@@ -8,12 +8,21 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.10",
+    "@emotion/styled": "^10.0.12",
+    "@fortawesome/fontawesome-svg-core": "^1.2.18",
+    "@fortawesome/free-solid-svg-icons": "^5.8.2",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "emotion-theming": "^10.0.10",
     "next": "^8.1.1-canary.53",
+    "normalize.css": "^8.0.1",
+    "nprogress": "^0.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "@types/node": "^11.13.9",
+    "@types/nprogress": "^0.2.0",
     "@types/react": "^16.8.15",
     "@types/react-dom": "^16.0.11",
     "typescript": "^3.5.2"

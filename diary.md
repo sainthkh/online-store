@@ -29,4 +29,9 @@ Writing what I did and decided.
 * Choose an image for the hero area. [this](https://unsplash.com/photos/iIAjbjXsVt4)
 * Responsive UI for the header.
 * [Prisma vs. Mongoose vs. Sequelize](https://www.npmtrends.com/mongoose-vs-prisma-vs-sequelize). Decided to use Mongoose. Because it's more popular. 
-* 
+* Got interested in logging application. So I read [this article](https://stackify.com/microservice-logging/).
+* Begin with Monolith. Because I don't know much about docker and kubernetes. But I want to refactor it to microservices some day. 
+* Set up backend and users module. 
+  - Learned that it is better to create module first and others later. 
+  - When using mongoose and @InjectModel. The name you used in @InjectModel and forFeature should be same. If not, you'll see a message like  " Nest can't resolve dependencies of the UsersService (?). Please make sure that the argument at index [0] is available in the UsersModule context.". 
+* When you use `type` as argument, you'll see "The type of Mutation must be Input" error message. 

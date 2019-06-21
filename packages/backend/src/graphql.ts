@@ -5,6 +5,14 @@
  */
 
 /* tslint:disable */
+export class CreateItemInput {
+    name: string;
+    description: string;
+    price: number;
+    image: string;
+    largeImage?: string;
+}
+
 export class CreateUserInput {
     name: string;
     email: string;
@@ -13,7 +21,7 @@ export class CreateUserInput {
 
 export class Item {
     id: string;
-    title: string;
+    name: string;
     description: string;
     image: string;
     largeImage?: string;
@@ -23,7 +31,7 @@ export class Item {
 export abstract class IMutation {
     abstract createUser(args: CreateUserInput): User | Promise<User>;
 
-    abstract createItem(title: string, description: string, price: number, image: string, largeImage?: string): Item | Promise<Item>;
+    abstract createItem(args: CreateItemInput): Item | Promise<Item>;
 }
 
 export abstract class IQuery {

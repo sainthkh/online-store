@@ -6,7 +6,7 @@ type User {
 
 type Item {
   id: ID!
-  title: String!
+  name: String!
   description: String!
   image: String!
   largeImage: String
@@ -26,7 +26,14 @@ input CreateUserInput {
   password: String!
 }
 
+input CreateItemInput {
+  name: String!
+  description: String!
+  price: Int!
+  image: String!
+}
+
 type Mutation {
   createUser(args: CreateUserInput!): User!
-  createItem(title: String!, description: String!, price: Int!, image: String!, largeImage: String): Item!
+  createItem(args: CreateItemInput!): Item!
 }

@@ -1,19 +1,27 @@
 import React from 'react';
 import App, { Container } from 'next/app';
+import { withGraphQLApp } from 'next-graphql-react';
+import { GraphQL, GraphQLProvider } from 'graphql-react';
 import Page from '../components/Page';
 
-class MyApp extends App {
+type MyAppProps = {
+  graphql: GraphQL
+}
+
+class MyApp extends App<MyAppProps, {}> {
   render() {
-    const { Component } = this.props;
+    const { Component, graphql, pageProps } = this.props;
 
     return (
       <Container>
-        <Page>
-          <Component />
-        </Page>
+        <GraphQLProvider graphql={graphql}>
+          <Page>
+            <Component {...pageProps} />
+          </Page>
+        </GraphQLProvider>
       </Container>
     );
   }
 }
 
-export default MyApp;
+export default withGraphQLApp(MyApp);

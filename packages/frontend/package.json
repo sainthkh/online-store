@@ -14,13 +14,16 @@
     "@fortawesome/free-solid-svg-icons": "^5.8.2",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "emotion-theming": "^10.0.10",
+    "graphql-react": "^8.2.0",
     "next": "^8.1.1-canary.53",
+    "next-graphql-react": "^3.0.2",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
+    "@types/graphql-react": "^8.1.1",
     "@types/node": "^11.13.9",
     "@types/nprogress": "^0.2.0",
     "@types/react": "^16.8.15",

@@ -35,3 +35,42 @@ Writing what I did and decided.
   - Learned that it is better to create module first and others later. 
   - When using mongoose and @InjectModel. The name you used in @InjectModel and forFeature should be same. If not, you'll see a message like  " Nest can't resolve dependencies of the UsersService (?). Please make sure that the argument at index [0] is available in the UsersModule context.". 
 * When you use `type` as argument, you'll see "The type of Mutation must be Input" error message. 
+
+## Day 4. Jun 22.
+
+* Planned to implement next module: Client GraphQL
+```markdown
+Do not think about other possibilities like online-course shop. Focus on making clothing shop. 
+
+Module Scope 
+
+* GraphQL Client. 
+* admin package and CRUD products. 
+* Show products on frontend
+
+Dashboard items
+
+* KPIs -> yesterday. Revenue. Orders. New customer. 
+* KPI graphs
+* Activities
+
+Admin Product CRUD
+
+* Create: Products page -> Add new
+* Update: Products page -> Click item
+* Fill content: Name, description. availability. stock. images. size, images.
+* Delete: don't delete it. Archive it. Only delete it if there is no order of this item. 
+
+Editor design
+
+* Left
+  - Name
+  - Images
+  - Description
+* Right
+  - Update / State (Draft, Public, Unlisted, Archive)
+  - Options: Color, Size, Availability.
+
+First Goal: Big Example. 
+```
+* Created `d.ts` files for `graphql-react` and `next-graphql-react`. Interestingly, if there is no `@types`, you must simply write module without `import`s. If you add them, it doesn't work. 

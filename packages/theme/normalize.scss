@@ -1,11 +1,13 @@
 html {
 	line-height: 1.15;
   -webkit-text-size-adjust: 100%;
-  width: 100%;
+	width: 100%;
+	min-height: 100vh;
 }
 body {
   margin: 0;
-  width: 100%;
+	width: 100%;
+	min-height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -14,6 +16,9 @@ body {
 }
 main {
 	display: block;
+}
+#root {
+	min-height: 100vh;
 }
 h1 {
 	font-size: 2em;
@@ -61,6 +66,8 @@ sup {
 }
 img {
 	border-style: none;
+  max-width: 100%;
+  height: auto;
 }
 button,input,optgroup,select,textarea {
 	font-family: inherit;

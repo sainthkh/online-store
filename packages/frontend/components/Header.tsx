@@ -73,11 +73,6 @@ const LogoBar = styled.div(({ theme: { spacing }}) => ({
 const Logo = styled.a(({ theme: { breakpoints }}) => ({
   width: 150,
 
-  'img': {
-    maxWidth: '100%',
-    height: 'auto',
-  },
-
   [breakpoints.tablet]: {
     width: 200,
   },

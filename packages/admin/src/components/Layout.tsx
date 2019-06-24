@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { styled } from '@beanovia/theme';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChartLine, faBox } from '@fortawesome/free-solid-svg-icons';
+import { faChartLine, faBox, faSearch, faBell, faUser } from '@fortawesome/free-solid-svg-icons';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -26,10 +26,19 @@ const Layout = ({ location, children }: Props) => {
           return <MenuItem to={path} current={path == location.pathname}><Icon icon={icon} />{name}</MenuItem>
         })}
       </Menu>
-      <div>
-        <div>AppBar</div>
-        <div>{children}</div>
-      </div>
+      <Content>
+        <Appbar>
+          <SearchBoxWrap>
+            <SearchBox type="text" placeholder="Search..." />
+            <SearchButton><Icon icon={faSearch} /></SearchButton>
+          </SearchBoxWrap>
+          <UserMenu>
+            <IconButton><FontAwesomeIcon icon={faBell} /></IconButton>
+            <IconButton><FontAwesomeIcon icon={faUser} /></IconButton>
+          </UserMenu>
+        </Appbar>
+        <Page>{children}</Page>
+      </Content>
     </Flexbox>
   );
 }
@@ -47,7 +56,7 @@ const Logo = styled(Link)(({theme: {spacing}}) => ({
   marginBottom: spacing.base,
 }))
 
-const Menu = styled.div(({ theme: { colors, spacing }}) => ({
+const Menu = styled.div(({ theme: { colors }}) => ({
   background: colors.black,
   color: colors.white,
   width: 250,
@@ -73,4 +82,68 @@ const MenuItem = styled(Link)<MenuItemProps>(({current, theme: { colors, spacing
 
 const Icon = styled(FontAwesomeIcon)(({ theme: { spacing } }) => ({
   marginRight: spacing.small,
+}));
+
+const Content = styled.div(({ theme: { colors }}) => ({
+  width: '100%',
+  background: colors.gray,
+}))
+
+const Appbar = styled.div(({ theme: { colors, spacing }}) => ({
+  display: 'flex',
+  padding: `${spacing.tiny}px ${spacing.small}px`,
+  background: colors.white,
+  borderBottom: `2px solid ${colors.gray_D10}`,
+}));
+
+const SearchBoxWrap = styled.div(({ theme: {colors, spacing}}) => ({
+  display: 'flex',
+  padding: `${spacing.tiny}px ${spacing.small}px`,
+  background: colors.gray,
+  borderRadius: 4,
+  width: 350,
+}));
+
+const SearchBox = styled.input({
+  background: 'transparent',
+  border: 'none',
+  fontSize: 20,
+  width: '100%',
+});
+
+const SearchButton = styled.button(({theme: {spacing}}) => ({
+  background: 'transparent',
+  border: 'none',
+  padding: 0,
+  marginLeft: spacing.xtiny,
+
+  svg: {
+    fontSize: 20,
+    padding: 0,
+  },
+}));
+
+const UserMenu = styled.a({
+  display: 'flex',
+  marginLeft: 'auto',
+});
+
+const IconButton = styled.a(({ theme: { colors, spacing, text }}) => ({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: 40,
+  height: 40,
+  borderRadius: 20,
+  color: colors.darkgray,
+  ...text.h3,
+
+  ':hover': {
+    cursor: 'pointer',
+    background: colors.gray,
+  }
+}))
+
+const Page = styled.div(({ theme: { colors, spacing }}) => ({
+  padding: `${spacing.small}px ${spacing.base}px ${spacing.large}px`,
 }));

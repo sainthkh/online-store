@@ -8,6 +8,7 @@ const theme: Theme = {
     black_L10: "#21044c",
     darkgray: '#212529',
     gray: '#ECEFF1',
+    gray_D10: "#d0d7dc",
     text: "#0b0b0d",
     white: '#fff',
   },

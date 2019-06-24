@@ -11,6 +11,7 @@ export type Theme = {
     black_L10: string,
     darkgray: string,
     gray: string,
+    gray_D10: string,
     text: string,
     white: string,
   },

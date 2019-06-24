@@ -74,3 +74,18 @@ Editor design
 First Goal: Big Example. 
 ```
 * Created `d.ts` files for `graphql-react` and `next-graphql-react`. Interestingly, if there is no `@types`, you must simply write module without `import`s. If you add them, it doesn't work. 
+* Set up code `admin` app with create-react-app and basic pages. 
+
+# Jun 23
+
+* Installed some libraries. As it's Sunday and I went to church, I didn't count this day. 
+
+# Day 5. Jun 24
+
+* Decided to create theme repo. Because theme values are used in both admin and frontend. 
+  - `create-react-app` doesn't allow compilation outside 'src' file. So, I had to find way to transpile `.ts` files in theme repo. 
+  - So, I had to use Visual Studio Code Build system. `Ctrl + Shift + B`
+  - And set up my tsconfig.json. Copied create-react-app tsconfig.json and changed noEmit -> false, outDir -> "./dist", declaration -> "true" and removed "allowJs" and "isolatedModule". 
+  - But it constantly showed an error: "JSX element type 'Flexbox' does not have any construct or call signatures." It is solved simply by adding react and @types/react to themes. 
+* `create-react-app` [doesn't support `dart-sass` yet](https://github.com/facebook/create-react-app/issues/5282). Currently, [dart-sass](https://sass-lang.com/dart-sass) is the primary implementation of SASS. So, I wanted to use it rather than `node-sass`. So, I used yarn's alias feature like `yarn add node-sass@npm:sass`.
+  - But the default package manager of lerna is `npm`. So, when I tried to add internal repo, it showed me `Invalid dependency type requested: alias` message. So, I added `"npmClient": "yarn",` to `lerna.json`. 

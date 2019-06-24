@@ -1,12 +1,17 @@
 {
-  "name": "admin",
+  "name": "@beanovia/admin",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@beanovia/theme": "^0.1.0",
+    "@emotion/core": "^10.0.10",
+    "@emotion/styled": "^10.0.12",
     "@types/jest": "24.0.15",
     "@types/node": "12.0.10",
     "@types/react": "16.8.22",
     "@types/react-dom": "16.8.4",
+    "emotion-theming": "^10.0.10",
+    "node-sass": "npm:sass",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",

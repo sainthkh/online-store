@@ -15,12 +15,21 @@ type ProductType {
   images: [String!]!
 }
 
+enum ProductStatus {
+  NORMAL
+  NEW_ARRIVAL
+  BEST_SELLER
+  FEATURED
+}
+
 type Item {
   id: ID!
   name: String!
   description: String!
   thumbnail: String!
   price: Int!
+  discountedPrice: Int
+  status: ProductStatus
   products: [ProductType!]!
   relatedProducts: [ID!]!
   createAt: DateTime!

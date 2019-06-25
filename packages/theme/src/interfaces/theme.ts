@@ -1,39 +1,41 @@
-type text = {
-  fontSize: number, 
-  lineHeight: string,
+interface Text {
+  fontSize: number
+  lineHeight: string
 }
 
-export type Theme = {
+export interface Theme {
   colors: {
-    primary: string,
-    primary_dark: string,
-    black: string,
-    black_light: string,
-    darkgray: string,
-    gray: string,
-    gray_dark: string,
-    text: string,
-    white: string,
-  },
+    primary: string
+    primary_light: string
+    primary_dark: string
+    black: string
+    black_light: string
+    darkgray: string
+    gray: string
+    gray_dark: string
+    gray_darker: string
+    text: string
+    white: string
+  }
   spacing: {
-    xtiny: number,
-    tiny: number,
-    small: number, 
-    base: number, 
-    large: number,
-    xlarge: number,
-  },
+    xtiny: number
+    tiny: number
+    small: number
+    base: number
+    large: number
+    xlarge: number
+  }
   text: {
-    h1: text,
-    h2: text,
-    h3: text,
-    large: text,
-    regular: text,
-    small: text, 
-    tiny: text,
-  },
+    h1: Text
+    h2: Text
+    h3: Text
+    large: Text
+    regular: Text
+    small: Text
+    tiny: Text
+  }
   breakpoints: {
-    tablet: string,
-    desktop: string,
-  },
-};
+    tablet: string
+    desktop: string
+  }
+}

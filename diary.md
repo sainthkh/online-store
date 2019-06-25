@@ -89,3 +89,17 @@ First Goal: Big Example.
   - But it constantly showed an error: "JSX element type 'Flexbox' does not have any construct or call signatures." It is solved simply by adding react and @types/react to themes. 
 * `create-react-app` [doesn't support `dart-sass` yet](https://github.com/facebook/create-react-app/issues/5282). Currently, [dart-sass](https://sass-lang.com/dart-sass) is the primary implementation of SASS. So, I wanted to use it rather than `node-sass`. So, I used yarn's alias feature like `yarn add node-sass@npm:sass`.
   - But the default package manager of lerna is `npm`. So, when I tried to add internal repo, it showed me `Invalid dependency type requested: alias` message. So, I added `"npmClient": "yarn",` to `lerna.json`. 
+
+ # Day 6. Jun 25
+
+* Using [lighten-color](https://pinetools.com/lighten-color) and [darken-color](https://pinetools.com/darken-color) pages to define colors. 
+   - It's a useful idea to define light and dark color of each color in theme. 
+* [Box shadow tool](https://www.cssmatic.com/box-shadow) to create box shadow for buttons. 
+* Followed [tutorial](https://gist.github.com/rimatla/a5a2c5dcf831c5744a656cfe81fadf52) and set up tslint to all packages. 
+  - When tslint doesn't work properly, 1) type lint command and check if it works correctly, 2) close and reopen VS Code. 
+* `yarn upgrade --latest` updates package.json file. 
+* Added basic table skeleton. 
+
+# Day 7. Jun 26
+
+* 

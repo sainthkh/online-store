@@ -21,8 +21,8 @@ const Layout = ({ location, children }: Props) => {
   return (
     <Flexbox>
       <Menu>
-        <Logo to="/">
-          <img src={logo} alt="Logo" />
+        <Logo to='/'>
+          <img src={logo} alt='Logo' />
         </Logo>
         {menu.map(({ path, icon, name }) => {
           return (
@@ -36,7 +36,7 @@ const Layout = ({ location, children }: Props) => {
       <Content>
         <Appbar>
           <SearchBoxWrap>
-            <SearchBox type="text" placeholder="Search..." />
+            <SearchBox type='text' placeholder='Search...' />
             <SearchButton>
               <Icon icon={faSearch} />
             </SearchButton>
@@ -82,7 +82,9 @@ interface IMenuItemProps {
   current: boolean
 }
 
-const MenuItem = styled(Link)<IMenuItemProps>(({ current, theme: { colors, spacing, text } }) => ({
+const MenuItem = styled(Link, {
+  shouldForwardProp: prop => prop !== 'current',
+})<IMenuItemProps>(({ current, theme: { colors, spacing, text } }) => ({
   display: 'block',
   padding: `${spacing.small}px ${spacing.base}px`,
 
@@ -145,7 +147,7 @@ const SearchButton = styled.button(({ theme: { spacing } }) => ({
   },
 }))
 
-const UserMenu = styled.a({
+const UserMenu = styled.div({
   display: 'flex',
   marginLeft: 'auto',
 })

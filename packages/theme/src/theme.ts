@@ -1,15 +1,17 @@
-import { Theme } from './interfaces/theme';
+import { Theme } from './interfaces/theme'
 
 const theme: Theme = {
   colors: {
-    primary: "#c7004c",
-    primary_dark: "#77002d",
-    black: "#0e0220",
-    black_light: "#21044c",
+    primary: '#c7004c',
+    primary_light: '#f5005d',
+    primary_dark: '#77002d',
+    black: '#0e0220',
+    black_light: '#21044c',
     darkgray: '#212529',
     gray: '#ECEFF1',
-    gray_dark: "#d0d7dc",
-    text: "#0b0b0d",
+    gray_dark: '#d0d7dc',
+    gray_darker: '#99a9b4',
+    text: '#0b0b0d',
     white: '#fff',
   },
   spacing: {
@@ -54,6 +56,6 @@ const theme: Theme = {
     tablet: '@media (min-width: 768px)',
     desktop: '@media (min-width: 1200px)',
   },
-};
+}
 
-export default theme;
+export default theme

@@ -76,7 +76,7 @@ const MenuItem = styled(Link)<MenuItemProps>(({current, theme: { colors, spacing
   background: current ? colors.primary : 'inherit',
 
   ':hover': {
-    background: current ? colors.primary : colors.primary_D40,
+    background: current ? colors.primary : colors.primary_dark,
   }
 }))
 
@@ -93,7 +93,7 @@ const Appbar = styled.div(({ theme: { colors, spacing }}) => ({
   display: 'flex',
   padding: `${spacing.tiny}px ${spacing.small}px`,
   background: colors.white,
-  borderBottom: `2px solid ${colors.gray_D10}`,
+  borderBottom: `2px solid ${colors.gray_dark}`,
 }));
 
 const SearchBoxWrap = styled.div(({ theme: {colors, spacing}}) => ({

@@ -3,12 +3,12 @@ import { Theme } from './interfaces/theme';
 const theme: Theme = {
   colors: {
     primary: "#c7004c",
-    primary_D40: "#77002d",
+    primary_dark: "#77002d",
     black: "#0e0220",
-    black_L10: "#21044c",
+    black_light: "#21044c",
     darkgray: '#212529',
     gray: '#ECEFF1',
-    gray_D10: "#d0d7dc",
+    gray_dark: "#d0d7dc",
     text: "#0b0b0d",
     white: '#fff',
   },

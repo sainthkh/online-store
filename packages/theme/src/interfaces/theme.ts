@@ -6,12 +6,12 @@ type text = {
 export type Theme = {
   colors: {
     primary: string,
-    primary_D40: string,
+    primary_dark: string,
     black: string,
-    black_L10: string,
+    black_light: string,
     darkgray: string,
     gray: string,
-    gray_D10: string,
+    gray_dark: string,
     text: string,
     white: string,
   },

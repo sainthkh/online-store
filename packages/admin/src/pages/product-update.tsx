@@ -1,7 +1,3 @@
-import React from 'react';
+import React from 'react'
 
-export default () => (
-  <div>
-    Update Product
-  </div>
-)
+export default () => <div>Update Product</div>

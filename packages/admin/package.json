@@ -24,6 +24,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "lint": "tslint -c tslint.json src/**/*.{ts,tsx} --fix --format verbose",
+    "tslint-check": "tslint-config-prettier-check ./tslint.json",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -43,6 +45,11 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^4.3.4"
+    "@types/react-router-dom": "^4.3.4",
+    "prettier": "^1.18.2",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "tslint-react": "^4.0.0"
   }
 }

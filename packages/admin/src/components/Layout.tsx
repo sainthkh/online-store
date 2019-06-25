@@ -1,149 +1,174 @@
-import React from 'react';
-import logo from '../logo.png';
-import { Link } from 'react-router-dom';
-import { styled } from '@beanovia/theme';
-import { withRouter, RouteComponentProps } from 'react-router';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChartLine, faBox, faSearch, faBell, faUser } from '@fortawesome/free-solid-svg-icons';
+import { styled } from '@beanovia/theme'
+import { faBell, faBox, faChartLine, faSearch, faUser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from 'react'
+import { RouteComponentProps, withRouter } from 'react-router'
+import { Link } from 'react-router-dom'
+import logo from '../logo.png'
 
-type LayoutProps = {
-  children: React.ReactNode;
+interface LayoutProps {
+  children: React.ReactNode
 }
 
-type Props = RouteComponentProps<any> & LayoutProps;
+type Props = RouteComponentProps<any> & LayoutProps
 
 const Layout = ({ location, children }: Props) => {
-  let menu = [
-    { path: "/", icon: faChartLine, name: "Dashboard", },
-    { path: "/products", icon: faBox, name:"Products", },
-  ];
+  const menu = [
+    { path: '/', icon: faChartLine, name: 'Dashboard' },
+    { path: '/products', icon: faBox, name: 'Products' },
+  ]
 
   return (
     <Flexbox>
       <Menu>
-        <Logo to="/"><img src={logo} alt="Logo" /></Logo>
-        { menu.map(({path, icon, name,}) => {
-          return <MenuItem to={path} current={path === location.pathname}><Icon icon={icon} />{name}</MenuItem>
+        <Logo to="/">
+          <img src={logo} alt="Logo" />
+        </Logo>
+        {menu.map(({ path, icon, name }) => {
+          return (
+            <MenuItem to={path} key={name} current={path === location.pathname}>
+              <Icon icon={icon} />
+              {name}
+            </MenuItem>
+          )
         })}
       </Menu>
       <Content>
         <Appbar>
           <SearchBoxWrap>
             <SearchBox type="text" placeholder="Search..." />
-            <SearchButton><Icon icon={faSearch} /></SearchButton>
+            <SearchButton>
+              <Icon icon={faSearch} />
+            </SearchButton>
           </SearchBoxWrap>
           <UserMenu>
-            <IconButton><FontAwesomeIcon icon={faBell} /></IconButton>
-            <IconButton><FontAwesomeIcon icon={faUser} /></IconButton>
+            <IconButton>
+              <FontAwesomeIcon icon={faBell} />
+            </IconButton>
+            <IconButton>
+              <FontAwesomeIcon icon={faUser} />
+            </IconButton>
           </UserMenu>
         </Appbar>
         <Page>{children}</Page>
       </Content>
     </Flexbox>
-  );
+  )
 }
 
-export default withRouter<Props>(Layout);
+export default withRouter<Props>(Layout)
 
 const Flexbox = styled.div({
   display: 'flex',
   minHeight: '100vh',
 })
 
-const Logo = styled(Link)(({theme: {spacing}}) => ({
+const Logo = styled(Link)(({ theme: { spacing } }) => ({
   display: 'block',
-  padding: spacing.base,
+
   marginBottom: spacing.base,
+  padding: spacing.base,
 }))
 
-const Menu = styled.div(({ theme: { colors }}) => ({
+const Menu = styled.div(({ theme: { colors } }) => ({
   background: colors.black,
   color: colors.white,
-  width: 250,
+
   minHeight: '100vh',
+  width: 250,
 }))
 
-type MenuItemProps = {
-  current: boolean,
-};
+interface MenuItemProps {
+  current: boolean
+}
 
-const MenuItem = styled(Link)<MenuItemProps>(({current, theme: { colors, spacing, text }}) => ({
+const MenuItem = styled(Link)<MenuItemProps>(({ current, theme: { colors, spacing, text } }) => ({
   display: 'block',
   padding: `${spacing.small}px ${spacing.base}px`,
+
+  background: current ? colors.primary : 'inherit',
   color: colors.white,
   ...text.h3,
   textDecoration: 'none',
-  background: current ? colors.primary : 'inherit',
 
   ':hover': {
     background: current ? colors.primary : colors.primary_dark,
-  }
+  },
 }))
 
 const Icon = styled(FontAwesomeIcon)(({ theme: { spacing } }) => ({
   marginRight: spacing.small,
-}));
+}))
 
-const Content = styled.div(({ theme: { colors }}) => ({
+const Content = styled.div(({ theme: { colors } }) => ({
   width: '100%',
+
   background: colors.gray,
 }))
 
-const Appbar = styled.div(({ theme: { colors, spacing }}) => ({
+const Appbar = styled.div(({ theme: { colors, spacing } }) => ({
   display: 'flex',
+
   padding: `${spacing.tiny}px ${spacing.small}px`,
+
   background: colors.white,
   borderBottom: `2px solid ${colors.gray_dark}`,
-}));
+}))
 
-const SearchBoxWrap = styled.div(({ theme: {colors, spacing}}) => ({
+const SearchBoxWrap = styled.div(({ theme: { colors, spacing } }) => ({
   display: 'flex',
-  padding: `${spacing.tiny}px ${spacing.small}px`,
-  background: colors.gray,
+
   borderRadius: 4,
+  padding: `${spacing.tiny}px ${spacing.small}px`,
   width: 350,
-}));
+
+  background: colors.gray,
+}))
 
 const SearchBox = styled.input({
   background: 'transparent',
   border: 'none',
   fontSize: 20,
   width: '100%',
-});
+})
 
-const SearchButton = styled.button(({theme: {spacing}}) => ({
+const SearchButton = styled.button(({ theme: { spacing } }) => ({
   background: 'transparent',
+
   border: 'none',
-  padding: 0,
   marginLeft: spacing.xtiny,
+  padding: 0,
 
   svg: {
     fontSize: 20,
     padding: 0,
   },
-}));
+}))
 
 const UserMenu = styled.a({
   display: 'flex',
   marginLeft: 'auto',
-});
+})
 
-const IconButton = styled.a(({ theme: { colors, spacing, text }}) => ({
+const IconButton = styled.a(({ theme: { colors, spacing, text } }) => ({
   display: 'flex',
-  justifyContent: 'center',
+
   alignItems: 'center',
-  width: 40,
-  height: 40,
+  justifyContent: 'center',
+
   borderRadius: 20,
+  height: 40,
+  width: 40,
+
   color: colors.darkgray,
   ...text.h3,
 
   ':hover': {
-    cursor: 'pointer',
     background: colors.gray,
-  }
+    cursor: 'pointer',
+  },
 }))
 
-const Page = styled.div(({ theme: { colors, spacing }}) => ({
+const Page = styled.div(({ theme: { colors, spacing } }) => ({
   padding: `${spacing.small}px ${spacing.base}px ${spacing.large}px`,
-}));
+}))

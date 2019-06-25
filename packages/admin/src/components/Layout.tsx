@@ -23,7 +23,7 @@ const Layout = ({ location, children }: Props) => {
       <Menu>
         <Logo to="/"><img src={logo} alt="Logo" /></Logo>
         { menu.map(({path, icon, name,}) => {
-          return <MenuItem to={path} current={path == location.pathname}><Icon icon={icon} />{name}</MenuItem>
+          return <MenuItem to={path} current={path === location.pathname}><Icon icon={icon} />{name}</MenuItem>
         })}
       </Menu>
       <Content>

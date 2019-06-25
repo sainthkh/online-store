@@ -1,19 +1,19 @@
-import React from 'react';
-import styled from '../utils/styled';
-import { ThemeProvider } from 'emotion-theming';
-import theme from '../utils/theme';
+import React from 'react'
+import styled from '../utils/styled'
+import { ThemeProvider } from 'emotion-theming'
+import theme from '../utils/theme'
 
-import Header from './Header';
-import Meta from './Meta';
-import Normalize from './Normalize';
+import Header from './Header'
+import Meta from './Meta'
+import Normalize from './Normalize'
 
-const StyledPage = styled.div(({ theme: { colors }}) => ({
+const StyledPage = styled.div(({ theme: { colors } }) => ({
   background: 'white',
   color: colors.text,
 }))
 
-type Props = {
-  children: React.ReactNode;
+interface Props {
+  children: React.ReactNode
 }
 
 export default ({ children }: Props) => {
@@ -23,8 +23,8 @@ export default ({ children }: Props) => {
       <StyledPage>
         <Meta />
         <Header />
-        { children }
+        {children}
       </StyledPage>
     </ThemeProvider>
-  );
+  )
 }

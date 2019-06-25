@@ -1,18 +1,30 @@
+scalar DateTime
+
 type User {
   id: ID!
   name: String!
   email: String!
 }
 
+type ProductType {
+  sku: String!
+  name: String!
+  colorPatch: String!
+  size: String!
+  quantity: Int!
+  images: [String!]!
+}
+
 type Item {
   id: ID!
   name: String!
   description: String!
-  image: String!
-  largeImage: String
+  thumbnail: String!
   price: Int!
-  # createAt: DateTime!
-  # updatedAt: DateTime!
+  products: [ProductType!]!
+  relatedProducts: [ID!]!
+  createAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type Query {

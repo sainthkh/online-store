@@ -1,16 +1,16 @@
-import React from 'react';
-import App, { Container } from 'next/app';
-import { withGraphQLApp } from 'next-graphql-react';
-import { GraphQL, GraphQLProvider } from 'graphql-react';
-import Page from '../components/Page';
+import React from 'react'
+import App, { Container } from 'next/app'
+import { withGraphQLApp } from 'next-graphql-react'
+import { GraphQL, GraphQLProvider } from 'graphql-react'
+import Page from '../components/Page'
 
-type MyAppProps = {
+interface MyAppProps {
   graphql: GraphQL
 }
 
 class MyApp extends App<MyAppProps, {}> {
   render() {
-    const { Component, graphql, pageProps } = this.props;
+    const { Component, graphql, pageProps } = this.props
 
     return (
       <Container>
@@ -20,8 +20,8 @@ class MyApp extends App<MyAppProps, {}> {
           </Page>
         </GraphQLProvider>
       </Container>
-    );
+    )
   }
 }
 
-export default withGraphQLApp(MyApp);
+export default withGraphQLApp(MyApp)

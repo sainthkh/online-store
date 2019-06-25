@@ -5,9 +5,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 
 @Resolver('Users')
 export class UsersResolver {
-  constructor(
-    private readonly usersService: UsersService,
-  ) {}
+  constructor(private readonly usersService: UsersService) {}
 
   @Query()
   async user(@Args('id') id: string) {

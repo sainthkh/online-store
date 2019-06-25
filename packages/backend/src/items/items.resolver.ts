@@ -5,9 +5,7 @@ import { CreateItemDto } from './dto/create-item.dto';
 
 @Resolver('Items')
 export class ItemsResolver {
-  constructor(
-    private readonly itemsService: ItemsService,
-  ) {}
+  constructor(private readonly itemsService: ItemsService) {}
 
   @Query()
   async items() {

@@ -16,7 +16,9 @@ import { ItemsModule } from './items/items.module';
         outputAs: 'class',
       },
     }),
-    MongooseModule.forRoot('mongodb://localhost:27017/beanovia', {useNewUrlParser: true}),
+    MongooseModule.forRoot('mongodb://localhost:27017/beanovia', {
+      useNewUrlParser: true,
+    }),
     UsersModule,
     ItemsModule,
   ],

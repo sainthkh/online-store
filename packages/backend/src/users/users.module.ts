@@ -7,9 +7,7 @@ import { USER_MODEL_NAME } from './users.const';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([
-      { name: USER_MODEL_NAME, schema: UserSchema },
-    ]),
+    MongooseModule.forFeature([{ name: USER_MODEL_NAME, schema: UserSchema }]),
   ],
   providers: [UsersService, UsersResolver],
 })

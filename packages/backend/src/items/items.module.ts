@@ -7,9 +7,7 @@ import { ITEM_MODEL_NAME } from './items.const';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([
-      { name: ITEM_MODEL_NAME, schema: ItemSchema },
-    ]),
+    MongooseModule.forFeature([{ name: ITEM_MODEL_NAME, schema: ItemSchema }]),
   ],
   providers: [ItemsService, ItemsResolver],
 })

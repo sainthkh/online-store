@@ -6,11 +6,11 @@ import { RouteComponentProps, withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import logo from '../logo.png'
 
-interface LayoutProps {
+interface ILayoutProps {
   children: React.ReactNode
 }
 
-type Props = RouteComponentProps<any> & LayoutProps
+type Props = RouteComponentProps<any> & ILayoutProps
 
 const Layout = ({ location, children }: Props) => {
   const menu = [
@@ -78,11 +78,11 @@ const Menu = styled.div(({ theme: { colors } }) => ({
   width: 250,
 }))
 
-interface MenuItemProps {
+interface IMenuItemProps {
   current: boolean
 }
 
-const MenuItem = styled(Link)<MenuItemProps>(({ current, theme: { colors, spacing, text } }) => ({
+const MenuItem = styled(Link)<IMenuItemProps>(({ current, theme: { colors, spacing, text } }) => ({
   display: 'block',
   padding: `${spacing.small}px ${spacing.base}px`,
 

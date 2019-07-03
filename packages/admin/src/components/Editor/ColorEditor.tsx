@@ -4,14 +4,7 @@ import ChangeColor from 'color'
 import { SketchPicker, ColorResult } from 'react-color'
 import Popover from '../Popover'
 import EditableDiv from './EditableDiv'
-
-interface Color {
-  id: string
-  colorHex: string
-  showColorPicker: boolean
-  name: string
-  images: string[]
-}
+import { Color } from './product'
 
 interface State {
   swatchEnabled: boolean

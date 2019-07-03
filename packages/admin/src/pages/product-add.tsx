@@ -3,10 +3,11 @@ import PageTitle from '../components/PageTitle'
 import Editor from '../components/Editor'
 import { styled } from '@beanovia/theme'
 import Layout from '../components/Layout'
+import { emptyProduct } from '../components/Editor/product'
 
 export default () => (
   <Layout>
     <PageTitle>Add Product</PageTitle>
-    <Editor />
+    <Editor product={emptyProduct()} />
   </Layout>
 )

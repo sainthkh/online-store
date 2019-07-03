@@ -11,10 +11,10 @@ const App: React.FC = () => {
   return (
     <ThemeProvider>
       <Router>
-        <Route path="/" exact={true} component={Dashboard} />
-        <Route path="/products" exact={true} component={ProductList} />
-        <Route path="/products/add" exact={true} component={ProductAdd} />
-        <Route path="/products/update/:id" exact={true} component={ProductUpdate} />
+        <Route path='/' exact={true} component={Dashboard} />
+        <Route path='/products' exact={true} component={ProductList} />
+        <Route path='/products/add' exact={true} component={ProductAdd} />
+        <Route path='/products/update/:id' exact={true} component={ProductUpdate} />
       </Router>
     </ThemeProvider>
   )

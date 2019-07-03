@@ -2,11 +2,11 @@
 
 Writing what I did and decided.
 
-## Day 1. Jun 19.
+## Day 1. Wed, Jun 19.
 
 * Set up project with Next.js and TypeScript. But as 8.1.0 doesn't have `d.ts` files. So, I decided to use 8.1.1-canary version.
 
-## Day 2. Jun 20.
+## Day 2. Thu, Jun 20.
 
 * Set up basic pages. 
 * Decided to use other designs for the main page. 
@@ -24,7 +24,7 @@ Writing what I did and decided.
 * Designed Nav, Header.
 * Applied NProgress.
 
-## Day 3. Jun 21.
+## Day 3. Fri, Jun 21.
 
 * Choose an image for the hero area. [this](https://unsplash.com/photos/iIAjbjXsVt4)
 * Responsive UI for the header.
@@ -36,7 +36,7 @@ Writing what I did and decided.
   - When using mongoose and @InjectModel. The name you used in @InjectModel and forFeature should be same. If not, you'll see a message like  " Nest can't resolve dependencies of the UsersService (?). Please make sure that the argument at index [0] is available in the UsersModule context.". 
 * When you use `type` as argument, you'll see "The type of Mutation must be Input" error message. 
 
-## Day 4. Jun 22.
+## Day 4. Sat, Jun 22.
 
 * Planned to implement next module: Client GraphQL
 ```markdown
@@ -80,7 +80,7 @@ First Goal: Big Example.
 
 * Installed some libraries. As it's Sunday and I went to church, I didn't count this day. 
 
-# Day 5. Jun 24
+# Day 5. Mon, Jun 24.
 
 * Decided to create theme repo. Because theme values are used in both admin and frontend. 
   - `create-react-app` doesn't allow compilation outside 'src' file. So, I had to find way to transpile `.ts` files in theme repo. 
@@ -90,7 +90,7 @@ First Goal: Big Example.
 * `create-react-app` [doesn't support `dart-sass` yet](https://github.com/facebook/create-react-app/issues/5282). Currently, [dart-sass](https://sass-lang.com/dart-sass) is the primary implementation of SASS. So, I wanted to use it rather than `node-sass`. So, I used yarn's alias feature like `yarn add node-sass@npm:sass`.
   - But the default package manager of lerna is `npm`. So, when I tried to add internal repo, it showed me `Invalid dependency type requested: alias` message. So, I added `"npmClient": "yarn",` to `lerna.json`. 
 
- # Day 6. Jun 25
+ # Day 6. Tue, Jun 25.
 
 * Using [lighten-color](https://pinetools.com/lighten-color) and [darken-color](https://pinetools.com/darken-color) pages to define colors. 
    - It's a useful idea to define light and dark color of each color in theme. 
@@ -100,6 +100,48 @@ First Goal: Big Example.
 * `yarn upgrade --latest` updates package.json file. 
 * Added basic table skeleton. 
 
-# Day 7. Jun 26
+# Day 7. Wed, Jun 26.
 
-* 
+* Designed product list page. 
+
+# Day 8. Thu, Jun 27.
+
+* Trying to make add product page. 
+
+# Day 9. Fri, Jun 28. 
+
+* Decided to write every idea in my head. Ideas became like a ball of spaghetti. So, I decided to solve that ball. 
+* Trying to add [react-color](https://casesandberg.github.io/react-color).
+
+# Day 10. Sat, Jun 29.
+
+* Met `jsx-no-lambda` lint. Workaround is [here](https://stackoverflow.com/questions/54983582/react-hooks-and-jsx-no-lambda-warning). Use `useCallback`. 
+
+# Jun 30
+
+* Copied code from `react-color`. 
+* Tried to learn how popover menu works with http://jsfiddle.net/LPbhS/. 
+* I don't count Sundays. 
+
+# Day 11. Mon, July 1.
+
+* I was wondering how `react-color` example detects click outside the component. And I finally learned that it creates `fixed` transparent div that covers the entire screen. And when that transparent cover is clicked, the things are done. 
+* Now, I have to choose one. Ref vs. transparent cover. 
+  - Transparent cover
+    + Pro: Simple to implement. 
+    + Con: Mouse pointer and other things don't work. Should click twice. 
+  - Ref -> Follow this way. 
+    + Pro: Other things work properly. 
+    + Con: A bit complicated. 
+
+# Day 12. Tue, July 2. 
+
+* I was wondering how to generate event handlers with certain values. So, I was reading `useMemo` and others. But I found some interesting articles. 
+  - [When to useMemo and useCallback](https://kentcdodds.com/blog/usememo-and-usecallback)
+  - [Are Hooks slow because of creating functions in render](https://reactjs.org/docs/hooks-faq.html#are-hooks-slow-because-of-creating-functions-in-render)
+  - [React, Inline Functions, and Performance](https://reacttraining.com/blog/react-inline-functions-and-performance/)
+  - [AHA programming](https://kentcdodds.com/blog/aha-programming)
+  - [The Wrong Abstraction](https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction)
+* After I read them, I decided to turn off `jsx-no-lambda` option. This option makes code hard to read. 
+  - And it seems that this option came from [here](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md). And `bind` performance is better in modern browsers. 
+* Checked [FileBird](https://codecanyon.net/item/media-folders-manager-for-wordpress/21715379?ref=cirvitis) for Media manager for my project. [Another manager](https://volunteers.joomla.org/teams/new-media-manager-team/reports/479-media-manager-status-meeting-30-3-2017) Checked [WordPress.com design](https://wordpress.com)

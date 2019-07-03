@@ -6,7 +6,7 @@ type User {
   email: String!
 }
 
-type ProductType {
+type ProductVariation {
   sku: String!
   name: String!
   colorPatch: String!
@@ -26,11 +26,11 @@ type Item {
   id: ID!
   name: String!
   description: String!
-  thumbnail: String!
+  featuredImage: String!
   price: Int!
   discountedPrice: Int
   status: ProductStatus
-  products: [ProductType!]!
+  products: [ProductVariation!]!
   relatedProducts: [ID!]!
   createAt: DateTime!
   updatedAt: DateTime!

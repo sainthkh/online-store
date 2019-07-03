@@ -2,6 +2,7 @@ import React from 'react'
 import Layout from '../components/Layout'
 import PageTitle from '../components/PageTitle'
 import { styled } from '@beanovia/theme'
+import { Link, LinkProps } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faImage } from '@fortawesome/free-solid-svg-icons'
 import redDress from '../red-dress.jpg'
@@ -10,7 +11,7 @@ export default () => (
   <Layout>
     <TitleBar>
       <PageTitle>Product list</PageTitle>
-      <AddNew>Add New</AddNew>
+      <AddNew to='/products/add'>Add New</AddNew>
     </TitleBar>
     <Table>
       <Thead>
@@ -50,7 +51,10 @@ const TitleBar = styled.div(({ theme: { spacing } }) => ({
   marginBottom: spacing.base,
 }))
 
-const AddNew = styled.button(({ theme: { colors, spacing, text } }) => ({
+const AddNew = styled(Link)<LinkProps>(({ theme: { colors, spacing, text } }) => ({
+  display: 'flex',
+  alignItems: 'center',
+
   background: colors.primary,
   color: colors.white,
 
@@ -60,6 +64,7 @@ const AddNew = styled.button(({ theme: { colors, spacing, text } }) => ({
   padding: `${spacing.xtiny}px ${spacing.base}px`,
 
   ...text.large,
+  textDecoration: 'none',
   fontWeight: 'bold',
 
   boxShadow: `1px 1px 3px 1px ${colors.gray_darker}`,
@@ -93,15 +98,15 @@ const Tbody = styled.tbody({})
 
 const Tr = styled.tr(({}) => ({
   // Checkbox
-  'th:nth-child(1), td:nth-child(1)': {
+  'th:nth-of-type(1), td:nth-of-type(1)': {
     width: 20,
   },
   // Date
-  'th:nth-child(4), td:nth-child(4)': {
+  'th:nth-of-type(4), td:nth-of-type(4)': {
     width: 80,
   },
   // Date
-  'th:nth-child(7), td:nth-child(7)': {
+  'th:nth-of-type(7), td:nth-of-type(7)': {
     width: 120,
   },
 }))

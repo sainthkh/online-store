@@ -1,28 +1,10 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef } from 'react'
 import { styled } from '@beanovia/theme'
+import { useOutsideClickDetector } from './hooks'
 
 interface Props {
   onChange: () => void
-  children: JSX.Element
-}
-
-const useOutsideClickDetector = (
-  ref: React.MutableRefObject<HTMLDivElement>,
-  onChange: () => void
-) => {
-  const handleClickOutside = (event: Event) => {
-    if (ref.current && !ref!.current.contains(event.target as Node)) {
-      onChange()
-    }
-  }
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside)
-
-    return () => {
-      document.addEventListener('mousedown', handleClickOutside)
-    }
-  })
+  children: React.ReactNode
 }
 
 export default ({ onChange, children }: Props) => {

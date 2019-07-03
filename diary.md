@@ -145,3 +145,11 @@ First Goal: Big Example.
 * After I read them, I decided to turn off `jsx-no-lambda` option. This option makes code hard to read. 
   - And it seems that this option came from [here](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md). And `bind` performance is better in modern browsers. 
 * Checked [FileBird](https://codecanyon.net/item/media-folders-manager-for-wordpress/21715379?ref=cirvitis) for Media manager for my project. [Another manager](https://volunteers.joomla.org/teams/new-media-manager-team/reports/479-media-manager-status-meeting-30-3-2017) Checked [WordPress.com design](https://wordpress.com)
+
+# Day 13. Wed, July 3.
+
+* Created editablediv for color names. 
+* In TypeScript + React, there are 2 Event types with the same name: KeyboardEvent. One came from default TypeScript, and the other came from React. When writing JSX, we need to use React version. 
+  - To do that, write `import React, { KeyboardEvent } from 'react'`. 
+* You cannot access `event.target.value` by default in TypeScript + React. You need to set event type like `ChangeEvent<HTMLInputElement>`. `ChangeEvent` exists in `'react'` package. 
+* I learned that tslint will be deprecated in 2019. So, I need to migrate to eslint. [Here's how](https://dev.to/robertcoopercode/using-eslint-and-prettier-in-a-typescript-project-53jb).

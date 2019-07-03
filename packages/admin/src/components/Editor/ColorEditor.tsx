@@ -3,6 +3,7 @@ import { styled } from '@beanovia/theme'
 import ChangeColor from 'color'
 import { SketchPicker, ColorResult } from 'react-color'
 import Popover from '../Popover'
+import EditableDiv from './EditableDiv'
 
 interface Color {
   id: string
@@ -124,7 +125,7 @@ export default () => {
                   </Popover>
                 ) : null}
               </ColorButton>
-              <div>{name}</div>
+              <EditableDiv text={name} />
             </ColorName>
             <div>
               <button>Add Image</button>

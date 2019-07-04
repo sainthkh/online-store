@@ -21,26 +21,26 @@ type Action =
   | { type: 'SHOW_COLOR_PICKER'; show: boolean }
   | { type: 'ENABLE_SWATCH_CLICK'; enable: boolean }
 
-export default ({ color: { id, name, colorHex, images }, onChange }: Props) => {
-  const reducer = useCallback((state: State, action: Action) => {
-    switch (action.type) {
-      case 'SHOW_COLOR_PICKER': {
-        return {
-          ...state,
-          showColorPicker: action.show,
-        }
+const reducer = (state: State, action: Action) => {
+  switch (action.type) {
+    case 'SHOW_COLOR_PICKER': {
+      return {
+        ...state,
+        showColorPicker: action.show,
       }
-      case 'ENABLE_SWATCH_CLICK': {
-        return {
-          ...state,
-          swatchClickEnabled: action.enable,
-        }
-      }
-      default:
-        return state
     }
-  }, [])
+    case 'ENABLE_SWATCH_CLICK': {
+      return {
+        ...state,
+        swatchClickEnabled: action.enable,
+      }
+    }
+    default:
+      return state
+  }
+}
 
+export default ({ color: { id, name, colorHex, images }, onChange }: Props) => {
   const [{ showColorPicker, swatchClickEnabled }, dispatch] = useReducer(reducer, {
     swatchClickEnabled: true,
     showColorPicker: false,

@@ -153,3 +153,17 @@ First Goal: Big Example.
   - To do that, write `import React, { KeyboardEvent } from 'react'`. 
 * You cannot access `event.target.value` by default in TypeScript + React. You need to set event type like `ChangeEvent<HTMLInputElement>`. `ChangeEvent` exists in `'react'` package. 
 * I learned that tslint will be deprecated in 2019. So, I need to migrate to eslint. [Here's how](https://dev.to/robertcoopercode/using-eslint-and-prettier-in-a-typescript-project-53jb).
+
+# Day 14. Thu, July 4. 
+
+* There was an interesting bug. `useReducer` was called twice for each dispatch. 
+* To understand why it happened, I googled it and found interesting answers. 
+  - [useReducer Action dispatched twice](https://stackoverflow.com/questions/54892403/usereducer-action-dispatched-twice)
+  - [React useReducer Hook fires twice / how to pass props to reducer?](https://stackoverflow.com/questions/55055793/react-usereducer-hook-fires-twice-how-to-pass-props-to-reducer)
+* The answer was that when you pass a lambda as an argument to `useReducer`, it is sometimes called twice. Because the reference to the reducer function is changed. 
+  - To solve that problem, we need to create consistent reference of the reducer function. 
+  - In many cases, it can be solved by moving reducer function out of the function component. That's why the reducer function is outside the component in [the official example](https://reactjs.org/docs/hooks-reference.html#usereducer).
+* But in my case, it was impossible, because reducer was calling `onChange` from the parent. So, I had to use `useCallback` to create reducer and pass `onChange` in an array. 
+  - But it didn't solve the problem because `onChange` also changes because `onChange` is also a lambda function. So, I used `useCallback` for `onChange`, too. 
+  - Finally, the action was fired only once. 
+  - (To see the code for these, check /admin/components/editor/index.tsx and ColorEditor.tsx)

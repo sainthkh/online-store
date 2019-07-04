@@ -4,55 +4,113 @@ import ChangeColor from 'color'
 import { SketchPicker, ColorResult } from 'react-color'
 import Popover from '../Popover'
 import EditableDiv from './EditableDiv'
-import { Color } from './product'
+import { Color as ProductColor } from './product'
+
+interface Color extends ProductColor {
+  id: string
+  colorHex: string
+  showColorPicker: boolean
+  name: string
+  images: string[]
+}
+
+interface Props {
+  colors: ProductColor[]
+  onChange: (colors: ProductColor[]) => void
+}
 
 interface State {
   swatchEnabled: boolean
   currentSwatch: string
   colors: Color[]
+  nextId: number
 }
 
 // prettier-ignore
 type Action = 
   | { type: 'SHOW_COLOR_PICKER'; id: string; show: boolean }
+  | { type: 'ADD_COLOR' }
   | { type: 'CHANGE_COLOR'; id: string; color: string }
   | { type: 'ENABLE_SWATCH_CLICK'; enable: boolean }
 
-export default () => {
-  const [{ swatchEnabled, currentSwatch, colors }, dispatch] = useReducer<
-    (state: State, action: Action) => State
-  >(
+interface InitArgs {
+  initialColors: ProductColor[]
+}
+
+const init = ({ initialColors }: InitArgs) => ({
+  swatchEnabled: true,
+  currentSwatch: '',
+  colors: initialColors.map(({ colorHex, name, images }, i) => ({
+    id: `color-${i}`,
+    showColorPicker: false,
+    colorHex,
+    name,
+    images,
+  })),
+  nextId: initialColors.length,
+})
+
+export default ({ colors: initialColors, onChange }: Props) => {
+  const reducer = React.useCallback(
     (state: State, action: Action) => {
       switch (action.type) {
-        case 'SHOW_COLOR_PICKER':
+        case 'SHOW_COLOR_PICKER': {
+          const newColors = state.colors.map(color => {
+            if (color.id === action.id) {
+              return {
+                ...color,
+                showColorPicker: action.show,
+              }
+            } else {
+              return color
+            }
+          })
+
           return {
             ...state,
             currentSwatch: action.id,
-            colors: state.colors.map(color => {
-              if (color.id === action.id) {
-                return {
-                  ...color,
-                  showColorPicker: action.show,
-                }
-              } else {
-                return color
-              }
-            }),
+            colors: newColors,
           }
-        case 'CHANGE_COLOR':
+        }
+        case 'ADD_COLOR': {
+          const randomColors: ProductColor[] = [
+            { colorHex: '#f00', name: 'red', images: [] },
+            { colorHex: '#0f0', name: 'green', images: [] },
+            { colorHex: '#00f', name: 'blue', images: [] },
+            { colorHex: '#fff', name: 'white', images: [] },
+          ]
+
+          const { colorHex, name, images } = randomColors[getRandomInt(0, 4)]
+          state.colors.push({
+            id: `color-${state.nextId}`,
+            showColorPicker: false,
+            colorHex,
+            name,
+            images,
+          })
+          onChange(state.colors)
+          state.nextId = state.nextId + 1
+
+          return state
+        }
+        case 'CHANGE_COLOR': {
+          const newColors = state.colors.map(color => {
+            if (color.id === action.id) {
+              return {
+                ...color,
+                colorHex: action.color,
+              }
+            } else {
+              return color
+            }
+          })
+          onChange(newColors)
+
           return {
             ...state,
-            colors: state.colors.map(color => {
-              if (color.id === action.id) {
-                return {
-                  ...color,
-                  colorHex: action.color,
-                }
-              } else {
-                return color
-              }
-            }),
+            colors: newColors,
           }
+        }
         case 'ENABLE_SWATCH_CLICK':
           return {
             ...state,
@@ -62,26 +120,18 @@ export default () => {
           return state
       }
     },
+    [onChange]
+  )
+
+  const [{ swatchEnabled, currentSwatch, colors }, dispatch] = useReducer<
+    (state: State, action: Action) => State,
+    InitArgs
+  >(
+    reducer,
     {
-      swatchEnabled: true,
-      currentSwatch: '',
-      colors: [
-        {
-          id: 'color-1',
-          colorHex: '#f00',
-          showColorPicker: false,
-          name: 'red',
-          images: [],
-        },
-        {
-          id: 'color-2',
-          colorHex: '#0f0',
-          showColorPicker: false,
-          name: 'green',
-          images: [],
-        },
-      ],
-    }
+      initialColors,
+    },
+    init
   )
 
   return (
@@ -126,8 +176,24 @@ export default () => {
           </ColorItem>
         )
       })}
+      <div>
+        <button
+          onClick={() => {
+            dispatch({ type: 'ADD_COLOR' })
+          }}
+        >
+          Add Color
+        </button>
+      </div>
     </div>
   )
+}
+
+// The maximum is exclusive and the minimum is inclusive
+function getRandomInt(min: number, max: number) {
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min)) + min
 }
 
 interface SwatchProps {

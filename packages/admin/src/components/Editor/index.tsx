@@ -1,7 +1,7 @@
 import React, { useReducer, ChangeEvent } from 'react'
 import { styled } from '@beanovia/theme'
 import ColorEditor from './ColorEditor'
-import { Product } from './product'
+import { Product, Color } from './product'
 
 interface Props {
   product: Product
@@ -15,32 +15,58 @@ interface State {
 type Action = 
   | { type: 'CHANGE_NAME'; text: string }
   | { type: 'CHANGE_DESCRIPTION'; text: string }
+  | { type: 'CHANGE_COLOR'; colors: Color[] }
+
+interface InitArgs {
+  initialProduct: Product
+}
+
+const init = ({ initialProduct }: InitArgs) => ({
+  product: initialProduct,
+})
+
+const reducer = (state: State, action: Action) => {
+  switch (action.type) {
+    case 'CHANGE_NAME':
+      return {
+        product: {
+          ...state.product,
+          name: action.text,
+        },
+      }
+    case 'CHANGE_DESCRIPTION':
+      return {
+        product: {
+          ...state.product,
+          description: action.text,
+        },
+      }
+    case 'CHANGE_COLOR':
+      return {
+        product: {
+          ...state.product,
+          colors: action.colors,
+        },
+      }
+    default:
+      return state
+  }
+}
 
 export default ({ product: initialProduct }: Props) => {
-  const [{ product }, dispatch] = useReducer(
-    (state: State, action: Action) => {
-      switch (action.type) {
-        case 'CHANGE_NAME':
-          return {
-            product: {
-              ...state.product,
-              name: action.text,
-            },
-          }
-        case 'CHANGE_DESCRIPTION':
-          return {
-            product: {
-              ...state.product,
-              description: action.text,
-            },
-          }
-        default:
-          return state
-      }
-    },
+  const [{ product }, dispatch] = useReducer<(state: State, action: Action) => State, InitArgs>(
+    reducer,
     {
-      product: initialProduct,
-    }
+      initialProduct,
+    },
+    init
+  )
+
+  const onColorChange = React.useCallback(
+    (colors: Color[]) => {
+      dispatch({ type: 'CHANGE_COLOR', colors })
+    },
+    [dispatch]
   )
 
   return (
@@ -70,7 +96,7 @@ export default ({ product: initialProduct }: Props) => {
         </FormGroup>
         <FormGroup>
           <Label>Colors / Images</Label>
-          <ColorEditor />
+          <ColorEditor colors={product.colors} onChange={onColorChange} />
         </FormGroup>
         <FormGroup>
           <Label>Sizes</Label>

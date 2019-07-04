@@ -22,9 +22,7 @@ export enum Featured {
 }
 
 export interface Color {
-  id: string
   colorHex: string
-  showColorPicker: boolean
   name: string
   images: string[]
 }

@@ -81,17 +81,23 @@ export default ({ colors: initialColors, onChange }: Props) => {
           ]
 
           const { colorHex, name, images } = randomColors[getRandomInt(0, 4)]
-          state.colors.push({
-            id: `color-${state.nextId}`,
-            showColorPicker: false,
-            colorHex,
-            name,
-            images,
-          })
-          onChange(state.colors)
-          state.nextId = state.nextId + 1
+          const newColors = [
+            ...state.colors,
+            {
+              id: `color-${state.nextId}`,
+              showColorPicker: false,
+              colorHex,
+              name,
+              images,
+            },
+          ]
+          onChange(newColors)
 
-          return state
+          return {
+            ...state,
+            colors: newColors,
+            nextId: state.nextId + 1,
+          }
         }
         case 'CHANGE_COLOR': {
           const newColors = state.colors.map(color => {

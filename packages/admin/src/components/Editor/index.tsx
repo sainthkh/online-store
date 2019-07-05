@@ -1,4 +1,4 @@
-import React, { useReducer, ChangeEvent } from 'react'
+import React, { useState, ChangeEvent } from 'react'
 import { styled } from '@beanovia/theme'
 import ColorEditor from './ColorEditor'
 import { Product, Color } from './product'
@@ -7,60 +7,10 @@ interface Props {
   product: Product
 }
 
-interface State {
-  product: Product
-}
-
-// prettier-ignore
-type Action = 
-  | { type: 'CHANGE_NAME'; text: string }
-  | { type: 'CHANGE_DESCRIPTION'; text: string }
-  | { type: 'CHANGE_COLOR'; colors: Color[] }
-
-interface InitArgs {
-  initialProduct: Product
-}
-
-const init = ({ initialProduct }: InitArgs) => ({
-  product: initialProduct,
-})
-
-const reducer = (state: State, action: Action) => {
-  switch (action.type) {
-    case 'CHANGE_NAME':
-      return {
-        product: {
-          ...state.product,
-          name: action.text,
-        },
-      }
-    case 'CHANGE_DESCRIPTION':
-      return {
-        product: {
-          ...state.product,
-          description: action.text,
-        },
-      }
-    case 'CHANGE_COLOR':
-      return {
-        product: {
-          ...state.product,
-          colors: action.colors,
-        },
-      }
-    default:
-      return state
-  }
-}
-
-export default ({ product: initialProduct }: Props) => {
-  const [{ product }, dispatch] = useReducer<(state: State, action: Action) => State, InitArgs>(
-    reducer,
-    {
-      initialProduct,
-    },
-    init
-  )
+export default ({ product }: Props) => {
+  const [name, setName] = useState<string>(product.name)
+  const [description, setDescription] = useState<string>(product.description)
+  const [colors, setColors] = useState<Color[]>(product.colors)
 
   return (
     <FlexBox>
@@ -71,9 +21,9 @@ export default ({ product: initialProduct }: Props) => {
             id='name'
             type='text'
             placeholder='name'
-            value={product.name}
+            value={name}
             onChange={(event: ChangeEvent<HTMLInputElement>) => {
-              dispatch({ type: 'CHANGE_NAME', text: event!.target!.value })
+              setName(event!.target!.value)
             }}
           />
         </FormGroup>
@@ -83,18 +33,15 @@ export default ({ product: initialProduct }: Props) => {
             rows={10}
             placeholder='description'
             onChange={(event: ChangeEvent<HTMLTextAreaElement>) => {
-              dispatch({ type: 'CHANGE_DESCRIPTION', text: event!.target!.value })
+              setDescription(event!.target!.value)
             }}
-          />
+          >
+            {description}
+          </Description>
         </FormGroup>
         <FormGroup>
           <Label>Colors / Images</Label>
-          <ColorEditor
-            colors={product.colors}
-            onChange={(colors: Color[]) => {
-              dispatch({ type: 'CHANGE_COLOR', colors })
-            }}
-          />
+          <ColorEditor colors={colors} onChange={c => setColors(c)} />
         </FormGroup>
         <FormGroup>
           <Label>Sizes</Label>

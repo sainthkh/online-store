@@ -167,3 +167,37 @@ First Goal: Big Example.
   - But it didn't solve the problem because `onChange` also changes because `onChange` is also a lambda function. So, I used `useCallback` for `onChange`, too. 
   - Finally, the action was fired only once. 
   - (To see the code for these, check /admin/components/editor/index.tsx and ColorEditor.tsx)
+* When you use a component that manipulates `className` inside with emotion styled, emotion won't append style at the back of `className` list. 
+  - Usually, it's a good solution to just ignore that component and cover it with a new `div` component. 
+* When I was writing code for `react-dnd`, I met 'Uncaught Invariant Violation: Expected to find a valid target.' error. To find the cause of this problem, I copied the [`Sortable`](http://react-dnd.github.io/react-dnd/examples/sortable/simple) example code and experimented things. 
+  - I found that this error is shown when I change `immutability-helper` code to `splice` function like below:
+    ```js
+    // from 
+    const moveCard = useCallback(
+      (dragIndex: number, hoverIndex: number) => {
+        const dragCard = cards[dragIndex]
+        setCards(
+          update(cards, {
+            $splice: [[dragIndex, 1], [hoverIndex, 0, dragCard]],
+          }),
+        )
+      },
+      [cards],
+    )
+
+    // to 
+    const moveCard = useCallback(
+      (dragIndex: number, hoverIndex: number) => {
+        const dragCard = cards[dragIndex]
+        setCards(
+          cards.splice(dragIndex, 1).splice(hoverIndex, 0, dragCard)
+        )
+      },
+      [cards],
+    )
+    ```
+  - Because of this, I got interested in immutable libraries. Actually, I used [Immutable.js](https://immutable-js.github.io/immutable-js/) in 2015 or 2016. But I didn't like it. I had to memorize APIs and it wasn't natural JavaScript. 
+  - When I was reading [React official immutability helper](https://reactjs.org/docs/update.html) and [immutability helper README](https://github.com/kolodny/immutability-helper), I learned that there are many alternatives to `immutable.js` like [immer](https://github.com/immerjs/immer), [immutability-helper](https://github.com/kolodny/immutability-helper) and [seamless-immutable](https://github.com/rtfeldman/seamless-immutable).
+  - After reading sample codes, I decided to use `immer`. Because `immer` has the biggest number of stars only next to `immutable.js`. But `immer` came out in 2018. Compared to 2015 of `immutable.js`, it's really rapid increase. In npmtrend, we can find that `immer` is following `immutable.js`. And I also loved the philosophy behind immer: 
+  - [immutability with] plain, native JavaScript data structures (arrays and objects) without further needing any library.
+

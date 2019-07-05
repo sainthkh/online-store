@@ -62,13 +62,6 @@ export default ({ product: initialProduct }: Props) => {
     init
   )
 
-  const onColorChange = React.useCallback(
-    (colors: Color[]) => {
-      dispatch({ type: 'CHANGE_COLOR', colors })
-    },
-    [dispatch]
-  )
-
   return (
     <FlexBox>
       <Main>
@@ -96,7 +89,12 @@ export default ({ product: initialProduct }: Props) => {
         </FormGroup>
         <FormGroup>
           <Label>Colors / Images</Label>
-          <ColorEditor colors={product.colors} onChange={onColorChange} />
+          <ColorEditor
+            colors={product.colors}
+            onChange={(colors: Color[]) => {
+              dispatch({ type: 'CHANGE_COLOR', colors })
+            }}
+          />
         </FormGroup>
         <FormGroup>
           <Label>Sizes</Label>

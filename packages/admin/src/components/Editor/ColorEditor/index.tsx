@@ -1,5 +1,6 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useEffect } from 'react'
 import { styled } from '@beanovia/theme'
+import produce from 'immer'
 import { Color as ColorData } from '../product'
 import Color from './Color'
 import ProductColor from './ProductColor'
@@ -19,6 +20,7 @@ type Action =
   | { type: 'ADD_COLOR' }
   | { type: 'CHANGE_COLOR'; color: Color }
   | { type: 'MOVE_COLOR'; dragIndex: number; hoverIndex: number }
+  | { type: 'DISPATCH_CHANGE' }
 
 interface InitArgs {
   initialColors: ColorData[]
@@ -35,66 +37,49 @@ const init = ({ initialColors }: InitArgs) => ({
   nextId: initialColors.length,
 })
 
-export default ({ colors: initialColors, onChange }: Props) => {
-  const reducer = React.useCallback(
-    (state: State, action: Action) => {
-      switch (action.type) {
-        case 'ADD_COLOR': {
-          const randomColors: ColorData[] = [
-            { colorHex: '#f00', name: 'red', images: [] },
-            { colorHex: '#0f0', name: 'green', images: [] },
-            { colorHex: '#00f', name: 'blue', images: [] },
-            { colorHex: '#fff', name: 'white', images: [] },
-          ]
+const reducer = (state: State, action: Action) => {
+  return produce(state, draft => {
+    switch (action.type) {
+      case 'ADD_COLOR': {
+        const randomColors: ColorData[] = [
+          { colorHex: '#f00', name: 'red', images: [] },
+          { colorHex: '#0f0', name: 'green', images: [] },
+          { colorHex: '#00f', name: 'blue', images: [] },
+          { colorHex: '#fff', name: 'white', images: [] },
+        ]
 
-          const { colorHex, name, images } = randomColors[getRandomInt(0, 4)]
-          const newColors = [
-            ...state.colors,
-            {
-              id: `color-${state.nextId}`,
-              showColorPicker: false,
-              colorHex,
-              name,
-              images,
-            },
-          ]
-          onChange(newColors)
+        const { colorHex, name, images } = randomColors[getRandomInt(0, 4)]
+        draft.colors.push({
+          id: `color-${state.nextId}`,
+          colorHex,
+          name,
+          images,
+        })
+        draft.nextId = state.nextId + 1
 
-          return {
-            ...state,
-            colors: newColors,
-            nextId: state.nextId + 1,
-          }
-        }
-        case 'CHANGE_COLOR': {
-          const newColors = state.colors.map(color =>
-            color.id === action.color.id ? action.color : color
-          )
-          onChange(newColors)
-
-          return {
-            ...state,
-            colors: newColors,
-          }
-        }
-        case 'MOVE_COLOR': {
-          const dragColor = state.colors[action.dragIndex]
-          const newColors = state.colors
-            .splice(action.dragIndex, 1)
-            .splice(action.hoverIndex, 0, dragColor)
-
-          return {
-            ...state,
-            colors: newColors,
-          }
-        }
-        default:
-          return state
+        return
       }
-    },
-    [onChange]
-  )
+      case 'CHANGE_COLOR': {
+        draft.colors = state.colors.map(color =>
+          color.id === action.color.id ? action.color : color
+        )
 
+        return
+      }
+      case 'MOVE_COLOR': {
+        const dragColor = state.colors[action.dragIndex]
+        draft.colors.splice(action.dragIndex, 1)
+        draft.colors.splice(action.hoverIndex, 0, dragColor)
+
+        return
+      }
+      default:
+        return state
+    }
+  })
+}
+
+export default ({ colors: initialColors, onChange }: Props) => {
   const [{ colors }, dispatch] = useReducer<(state: State, action: Action) => State, InitArgs>(
     reducer,
     {
@@ -103,15 +88,23 @@ export default ({ colors: initialColors, onChange }: Props) => {
     init
   )
 
+  useEffect(() => {
+    onChange(colors)
+  }, [colors])
+
   return (
     <div>
-      {colors.map(color => {
+      {colors.map((color, i) => {
         return (
           <ProductColor
             key={color.id}
             color={color}
+            index={i}
             onChange={newColor => {
               dispatch({ type: 'CHANGE_COLOR', color: newColor })
+            }}
+            onMove={(dragIndex, hoverIndex) => {
+              dispatch({ type: 'MOVE_COLOR', dragIndex, hoverIndex })
             }}
           />
         )

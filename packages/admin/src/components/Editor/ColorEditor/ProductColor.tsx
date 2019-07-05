@@ -1,14 +1,18 @@
-import React, { useReducer, useCallback } from 'react'
+import React, { useReducer } from 'react'
 import ChangeColor from 'color'
 import Color from './Color'
 import Popover from '../../Popover'
 import { SketchPicker, ColorResult } from 'react-color'
 import EditableDiv from '../EditableDiv'
 import { styled } from '@beanovia/theme'
+import Sortable from '../Sortable'
+import { COLOR } from './itemTypes'
 
 interface Props {
   color: Color
+  index: number
   onChange: (color: Color) => void
+  onMove: (dragIndex: number, hoverIndex: number) => void
 }
 
 interface State {
@@ -40,54 +44,56 @@ const reducer = (state: State, action: Action) => {
   }
 }
 
-export default ({ color: { id, name, colorHex, images }, onChange }: Props) => {
+export default ({ color: { id, name, colorHex, images }, onChange, index, onMove }: Props) => {
   const [{ showColorPicker, swatchClickEnabled }, dispatch] = useReducer(reducer, {
     swatchClickEnabled: true,
     showColorPicker: false,
   })
 
   return (
-    <ColorItem>
-      <ColorName>
-        <ColorButton>
-          <Swatch
-            color={colorHex}
-            onClick={() => {
-              if (swatchClickEnabled) {
-                dispatch({ type: 'SHOW_COLOR_PICKER', show: true })
-              }
-            }}
-          />
-          {showColorPicker ? (
-            <Popover
-              onChange={() => {
-                dispatch({ type: 'ENABLE_SWATCH_CLICK', enable: false })
-                setTimeout(() => {
-                  dispatch({ type: 'ENABLE_SWATCH_CLICK', enable: true })
-                }, 150)
-                dispatch({ type: 'SHOW_COLOR_PICKER', show: false })
+    <Sortable itemType={COLOR} itemId={id} index={index} onMove={onMove}>
+      <ColorItem>
+        <ColorName>
+          <ColorButton>
+            <Swatch
+              color={colorHex}
+              onClick={() => {
+                if (swatchClickEnabled) {
+                  dispatch({ type: 'SHOW_COLOR_PICKER', show: true })
+                }
               }}
-            >
-              <SketchPicker
-                color={colorHex}
-                onChange={(pickedColor: ColorResult) => {
-                  onChange({
-                    id,
-                    colorHex: pickedColor.hex,
-                    name,
-                    images,
-                  })
+            />
+            {showColorPicker ? (
+              <Popover
+                onChange={() => {
+                  dispatch({ type: 'ENABLE_SWATCH_CLICK', enable: false })
+                  setTimeout(() => {
+                    dispatch({ type: 'ENABLE_SWATCH_CLICK', enable: true })
+                  }, 150)
+                  dispatch({ type: 'SHOW_COLOR_PICKER', show: false })
                 }}
-              />
-            </Popover>
-          ) : null}
-        </ColorButton>
-        <EditableDiv text={name} />
-      </ColorName>
-      <div>
-        <button>Add Image</button>
-      </div>
-    </ColorItem>
+              >
+                <SketchPicker
+                  color={colorHex}
+                  onChange={(pickedColor: ColorResult) => {
+                    onChange({
+                      id,
+                      colorHex: pickedColor.hex,
+                      name,
+                      images,
+                    })
+                  }}
+                />
+              </Popover>
+            ) : null}
+          </ColorButton>
+          <EditableDiv text={name} />
+        </ColorName>
+        <div>
+          <button>Add Image</button>
+        </div>
+      </ColorItem>
+    </Sortable>
   )
 }
 

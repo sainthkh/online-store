@@ -90,7 +90,7 @@ export default ({ colors: initialColors, onChange }: Props) => {
 
   useEffect(() => {
     onChange(colors)
-  }, [colors])
+  }, [onChange, colors])
 
   return (
     <div>

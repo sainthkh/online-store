@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react'
+import React, { useState } from 'react'
 import ChangeColor from 'color'
 import Color from './Color'
 import Popover from '../../Popover'
@@ -59,7 +59,7 @@ export default ({ color: { id, name, colorHex, images }, onChange, index, onMove
           <EditableDiv text={name} />
         </ColorName>
         <div>
-          <button>Add Image</button>
+          <Button color='secondary'>Add Image</Button>
         </div>
       </ColorItem>
     </Sortable>
@@ -96,4 +96,19 @@ const Swatch = styled.div<SwatchProps>(({ color }) => ({
   borderColor: ChangeColor(color)
     .darken(0.6)
     .string(),
+}))
+
+export const Button = styled.button(({ theme: { colors, spacing, text } }) => ({
+  border: 'none',
+  borderRadius: 3,
+  padding: `${spacing.xtiny}px ${spacing.tiny}px`,
+  background: colors.secondary,
+  color: colors.white,
+  boxShadow: `1px 1px 3px 1px ${colors.gray_darker}`,
+  cursor: 'pointer',
+  ...text.small,
+
+  ':hover': {
+    background: colors.secondary_dark,
+  },
 }))

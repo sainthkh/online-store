@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent } from 'react'
 import { styled } from '@beanovia/theme'
 import ColorEditor from './ColorEditor'
+import SizeEditor from './SizeEditor'
 import { Product, Color } from './product'
 
 interface Props {
@@ -45,9 +46,7 @@ export default ({ product }: Props) => {
         </FormGroup>
         <FormGroup>
           <Label>Sizes</Label>
-          <Sizes>
-            <button>Add Size</button>
-          </Sizes>
+          <SizeEditor />
         </FormGroup>
         <FormGroup>
           <Label>Variations</Label>
@@ -131,8 +130,6 @@ const Description = styled.textarea(({ theme: { spacing, text } }) => ({
   padding: `${spacing.tiny}px ${spacing.small}px`,
   ...text.regular,
 }))
-
-const Sizes = styled.div({})
 
 const Side = styled.div(({ theme: { spacing } }) => ({
   width: 300,

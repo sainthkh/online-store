@@ -5,6 +5,8 @@ const theme: Theme = {
     primary: '#c7004c',
     primary_light: '#f5005d',
     primary_dark: '#77002d',
+    secondary: '#09476e',
+    secondary_dark: '#033352',
     black: '#0e0220',
     black_light: '#21044c',
     darkgray: '#212529',

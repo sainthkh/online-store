@@ -1,9 +1,9 @@
 import React, { useReducer, useEffect } from 'react'
-import { styled } from '@beanovia/theme'
 import produce from 'immer'
 import { Color as ColorData } from '../product'
 import Color from './Color'
 import ProductColor from './ProductColor'
+import { Button } from '../Button'
 
 interface Props {
   colors: ColorData[]
@@ -110,13 +110,14 @@ export default ({ colors: initialColors, onChange }: Props) => {
         )
       })}
       <div>
-        <button
+        <Button
+          color='primary'
           onClick={() => {
             dispatch({ type: 'ADD_COLOR' })
           }}
         >
           Add Color
-        </button>
+        </Button>
       </div>
     </div>
   )

@@ -8,6 +8,8 @@ export interface Theme {
     primary: string
     primary_light: string
     primary_dark: string
+    secondary: string
+    secondary_dark: string
     black: string
     black_light: string
     darkgray: string

@@ -2,11 +2,11 @@ import React, { useEffect } from 'react'
 
 export const useOutsideClickDetector = (
   ref: React.MutableRefObject<HTMLDivElement>,
-  onChange: () => void
+  onClose: () => void
 ) => {
   const handleClickOutside = (event: Event) => {
     if (ref.current && !ref!.current.contains(event.target as Node)) {
-      onChange()
+      onClose()
     }
   }
 

@@ -3,13 +3,13 @@ import { styled } from '@beanovia/theme'
 import { useOutsideClickDetector } from './hooks'
 
 interface Props {
-  onChange: () => void
+  onClose: () => void
   children: React.ReactNode
 }
 
-export default ({ onChange, children }: Props) => {
+export default ({ onClose, children }: Props) => {
   const ref = useRef<HTMLDivElement>(null!)
-  useOutsideClickDetector(ref, onChange)
+  useOutsideClickDetector(ref, onClose)
 
   return <Wrap ref={ref}>{children}</Wrap>
 }

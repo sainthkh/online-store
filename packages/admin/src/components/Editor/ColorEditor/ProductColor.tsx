@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import React, { useState, useReducer } from 'react'
 import ChangeColor from 'color'
 import Color from './Color'
 import Popover from '../../Popover'
@@ -15,40 +15,9 @@ interface Props {
   onMove: (dragIndex: number, hoverIndex: number) => void
 }
 
-interface State {
-  swatchClickEnabled: boolean
-  showColorPicker: boolean
-}
-
-// prettier-ignore
-type Action = 
-  | { type: 'SHOW_COLOR_PICKER'; show: boolean }
-  | { type: 'ENABLE_SWATCH_CLICK'; enable: boolean }
-
-const reducer = (state: State, action: Action) => {
-  switch (action.type) {
-    case 'SHOW_COLOR_PICKER': {
-      return {
-        ...state,
-        showColorPicker: action.show,
-      }
-    }
-    case 'ENABLE_SWATCH_CLICK': {
-      return {
-        ...state,
-        swatchClickEnabled: action.enable,
-      }
-    }
-    default:
-      return state
-  }
-}
-
 export default ({ color: { id, name, colorHex, images }, onChange, index, onMove }: Props) => {
-  const [{ showColorPicker, swatchClickEnabled }, dispatch] = useReducer(reducer, {
-    swatchClickEnabled: true,
-    showColorPicker: false,
-  })
+  const [show, showColorPicker] = useState<boolean>(false)
+  const [enabled, enableSwatch] = useState<boolean>(true)
 
   return (
     <Sortable itemType={COLOR} itemId={id} index={index} onMove={onMove}>
@@ -58,19 +27,19 @@ export default ({ color: { id, name, colorHex, images }, onChange, index, onMove
             <Swatch
               color={colorHex}
               onClick={() => {
-                if (swatchClickEnabled) {
-                  dispatch({ type: 'SHOW_COLOR_PICKER', show: true })
+                if (enabled) {
+                  showColorPicker(true)
                 }
               }}
             />
-            {showColorPicker ? (
+            {show ? (
               <Popover
-                onChange={() => {
-                  dispatch({ type: 'ENABLE_SWATCH_CLICK', enable: false })
+                onClose={() => {
+                  enableSwatch(false)
                   setTimeout(() => {
-                    dispatch({ type: 'ENABLE_SWATCH_CLICK', enable: true })
+                    enableSwatch(true)
                   }, 150)
-                  dispatch({ type: 'SHOW_COLOR_PICKER', show: false })
+                  showColorPicker(false)
                 }}
               >
                 <SketchPicker

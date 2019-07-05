@@ -1,4 +1,5 @@
 import React, { useReducer, useRef, ChangeEvent, KeyboardEvent } from 'react'
+import { styled } from '@beanovia/theme'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { useOutsideClickDetector } from '../hooks'
@@ -63,52 +64,103 @@ export default ({ text: initialText }: Props) => {
   })
 
   return mode === 'DIV' ? (
-    <div
+    <Div
       onClick={() => {
         dispatch({ type: 'CHANGE_TO_INPUT' })
       }}
     >
       {text}
-    </div>
+    </Div>
   ) : (
-    <div ref={ref}>
-      <div>
-        <input
-          type='text'
-          value={text}
-          onChange={(event: ChangeEvent<HTMLInputElement>) => {
-            dispatch({ type: 'CHANGE_TEXT', text: event!.target!.value })
-          }}
-          onKeyPress={(event: KeyboardEvent<HTMLInputElement>) => {
-            // KeyPress cannot detect Escape
-            if (event.key === 'Enter') {
-              dispatch({ type: 'SET_TEXT' })
-            }
-          }}
-          onKeyUp={(event: KeyboardEvent<HTMLInputElement>) => {
-            // KeyUp cannot detect Enter
-            if (event.key === 'Escape') {
-              dispatch({ type: 'RESET_TEXT' })
-            }
-          }}
-        />
-      </div>
-      <div>
-        <button
+    <InputWrap ref={ref}>
+      <Input
+        type='text'
+        value={text}
+        onChange={(event: ChangeEvent<HTMLInputElement>) => {
+          dispatch({ type: 'CHANGE_TEXT', text: event!.target!.value })
+        }}
+        onKeyPress={(event: KeyboardEvent<HTMLInputElement>) => {
+          // KeyPress cannot detect Escape
+          if (event.key === 'Enter') {
+            dispatch({ type: 'SET_TEXT' })
+          }
+        }}
+        onKeyUp={(event: KeyboardEvent<HTMLInputElement>) => {
+          // KeyUp cannot detect Enter
+          if (event.key === 'Escape') {
+            dispatch({ type: 'RESET_TEXT' })
+          }
+        }}
+      />
+      <InputMenu>
+        <SaveButton
           onClick={() => {
             dispatch({ type: 'SET_TEXT' })
           }}
         >
           Save
-        </button>
-        <button
+        </SaveButton>
+        <CancelButton
           onClick={() => {
             dispatch({ type: 'RESET_TEXT' })
           }}
         >
           <FontAwesomeIcon icon={faTimes} />
-        </button>
-      </div>
-    </div>
+        </CancelButton>
+      </InputMenu>
+    </InputWrap>
   )
 }
+
+const Div = styled.div(({ theme: { text } }) => ({
+  ...text.regular,
+  cursor: 'pointer',
+}))
+
+const InputWrap = styled.div({
+  width: '100%',
+})
+
+const Input = styled.input(({ theme: { spacing, text } }) => ({
+  display: 'block',
+  padding: `${spacing.xtiny}px ${spacing.tiny}px`,
+  ...text.regular,
+  boxSizing: 'border-box',
+  width: '100%',
+}))
+
+const InputMenu = styled.div(({ theme: { spacing } }) => ({
+  display: 'flex',
+  marginTop: spacing.xtiny,
+}))
+
+export const SaveButton = styled.button(({ theme: { colors, spacing, text } }) => ({
+  display: 'block',
+  border: 'none',
+  borderRadius: 2,
+  padding: `${spacing.xtiny}px ${spacing.tiny}px`,
+  background: colors.primary,
+  color: colors.white,
+  boxShadow: `1px 1px 2px 1px ${colors.gray_darker}`,
+  cursor: 'pointer',
+  ...text.small,
+
+  ':hover': {
+    background: colors.primary_dark,
+  },
+}))
+
+export const CancelButton = styled.button(({ theme: { colors, spacing, text } }) => ({
+  display: 'block',
+  border: 'none',
+  borderRadius: 2,
+  padding: `${spacing.xtiny}px ${spacing.tiny}px`,
+  cursor: 'pointer',
+  background: 'inherit',
+  ...text.small,
+  marginLeft: spacing.tiny,
+
+  ':hover': {
+    background: colors.gray_dark,
+  },
+}))

@@ -27,6 +27,10 @@ export interface Color {
   images: string[]
 }
 
+export interface EditableColor extends Color {
+  id: string
+}
+
 export interface Variation {
   sku: string
   color: string

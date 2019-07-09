@@ -1,100 +1,106 @@
-import React, { useState, ChangeEvent } from 'react'
+import React, { useReducer, ChangeEvent } from 'react'
 import { styled } from '@beanovia/theme'
+import DispatchContext from './Context'
 import ColorEditor from './ColorEditor'
 import SizeEditor from './SizeEditor'
-import { Product, Color } from './product'
+import { Product } from './product'
+import reducer, { ReducerFunc, InitArgs, init } from './reducer'
 
 interface Props {
   product: Product
 }
 
 export default ({ product }: Props) => {
-  const [name, setName] = useState<string>(product.name)
-  const [description, setDescription] = useState<string>(product.description)
-  const [colors, setColors] = useState<Color[]>(product.colors)
+  const [{ name, description, colors }, dispatch] = useReducer<ReducerFunc, InitArgs>(
+    reducer,
+    { product },
+    init
+  )
 
   return (
-    <FlexBox>
-      <Main>
-        <FormGroup>
-          <Label htmlFor='name'>Product Name</Label>
-          <Name
-            id='name'
-            type='text'
-            placeholder='name'
-            value={name}
-            onChange={(event: ChangeEvent<HTMLInputElement>) => {
-              setName(event!.target!.value)
-            }}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label htmlFor='description'>Description</Label>
-          <Description
-            rows={10}
-            placeholder='description'
-            onChange={(event: ChangeEvent<HTMLTextAreaElement>) => {
-              setDescription(event!.target!.value)
-            }}
-          >
-            {description}
-          </Description>
-        </FormGroup>
-        <FormGroup>
-          <Label>Colors / Images</Label>
-          <ColorEditor colors={colors} onChange={c => setColors(c)} />
-        </FormGroup>
-        <FormGroup>
-          <Label>Sizes</Label>
-          <SizeEditor />
-        </FormGroup>
-        <FormGroup>
-          <Label>Variations</Label>
-          <table>
-            <thead>
-              <tr>
-                <th>sku</th>
-                <th>color</th>
-                <th>size</th>
-                <th>stock</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <input type='text' />
-                </td>
-                <td>
-                  <input type='text' />
-                </td>
-                <td>
-                  <input type='text' />
-                </td>
-                <td>
-                  <input type='text' />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </FormGroup>
-      </Main>
-      <Side>
-        <FormGroup>
-          <Label htmlFor='price'>Price</Label>
-          <Input id='price' type='text' placeholder='price' />
-        </FormGroup>
-        <FormGroup>
-          <Label htmlFor='discountedPrice'>Discounted Price</Label>
-          <Input id='discountedPrice' type='text' placeholder='discountedPrice' />
-        </FormGroup>
-        <FormGroup>
-          <Label>Featured Image</Label>
-        </FormGroup>
-        <FormGroup>
-          <Label>Featured</Label>
-        </FormGroup>
-      </Side>
-    </FlexBox>
+    <DispatchContext.Provider value={dispatch}>
+      <FlexBox>
+        <Main>
+          <FormGroup>
+            <Label htmlFor='name'>Product Name</Label>
+            <Name
+              id='name'
+              type='text'
+              placeholder='name'
+              value={name}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                dispatch({ type: 'CHANGE_NAME', text: event!.target!.value })
+              }}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor='description'>Description</Label>
+            <Description
+              rows={10}
+              placeholder='description'
+              onChange={(event: ChangeEvent<HTMLTextAreaElement>) => {
+                dispatch({ type: 'CHANGE_DESCRIPTION', text: event!.target!.value })
+              }}
+            >
+              {description}
+            </Description>
+          </FormGroup>
+          <FormGroup>
+            <Label>Colors / Images</Label>
+            <ColorEditor colors={colors} />
+          </FormGroup>
+          <FormGroup>
+            <Label>Sizes</Label>
+            <SizeEditor />
+          </FormGroup>
+          <FormGroup>
+            <Label>Variations</Label>
+            <table>
+              <thead>
+                <tr>
+                  <th>sku</th>
+                  <th>color</th>
+                  <th>size</th>
+                  <th>stock</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <input type='text' />
+                  </td>
+                  <td>
+                    <input type='text' />
+                  </td>
+                  <td>
+                    <input type='text' />
+                  </td>
+                  <td>
+                    <input type='text' />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </FormGroup>
+        </Main>
+        <Side>
+          <FormGroup>
+            <Label htmlFor='price'>Price</Label>
+            <Input id='price' type='text' placeholder='price' />
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor='discountedPrice'>Discounted Price</Label>
+            <Input id='discountedPrice' type='text' placeholder='discountedPrice' />
+          </FormGroup>
+          <FormGroup>
+            <Label>Featured Image</Label>
+          </FormGroup>
+          <FormGroup>
+            <Label>Featured</Label>
+          </FormGroup>
+        </Side>
+      </FlexBox>
+    </DispatchContext.Provider>
   )
 }
 

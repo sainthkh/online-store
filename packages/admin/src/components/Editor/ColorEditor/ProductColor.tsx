@@ -96,6 +96,8 @@ const Swatch = styled.div<SwatchProps>(({ color }) => ({
   borderColor: ChangeColor(color)
     .darken(0.6)
     .string(),
+
+  cursor: 'pointer',
 }))
 
 export const Button = styled.button(({ theme: { colors, spacing, text } }) => ({

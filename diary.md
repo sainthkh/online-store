@@ -201,3 +201,37 @@ First Goal: Big Example.
   - After reading sample codes, I decided to use `immer`. Because `immer` has the biggest number of stars only next to `immutable.js`. But `immer` came out in 2018. Compared to 2015 of `immutable.js`, it's really rapid increase. In npmtrend, we can find that `immer` is following `immutable.js`. And I also loved the philosophy behind immer: 
   - [immutability with] plain, native JavaScript data structures (arrays and objects) without further needing any library.
 
+# Day 15. Fri, July 5
+
+* Yesterday, I thought I made things work by using `useCallback` and putting `useReducer` outside component. But I was wrong. I found this error because `'MOVE_COLOR'` action is called twice and the colors didn't move. Because same swap operation is done twice. 
+  - They didn't work because `onChange` handler I created is a side effect. It changes the state of the parent component. And reducer should be pure. 
+  - So, I decided to use `useEffect` to call `onChange` because it's an *effect*. 
+  - And it works smoothly. 
+* As I came from [Reason React](https://reasonml.github.io/reason-react/docs/en/state-actions-reducer) background, I'm more accustomed to reducer components. (Actually, [useReducer idea came from Reason React](https://reactjs.org/docs/hooks-faq.html#what-is-the-prior-art-for-hooks).)
+  - MOVE_COLOR problem made me think I'm abusing `useReducer` and getting things done in hard way when I can finish jobs with simple `useState`. So, I searched about it and found an interesting article. 
+  - [Should I useState or useReducer?](https://kentcdodds.com/blog/should-i-usestate-or-usereducer). This answered my question and I made one rule. 
+    + When I should change several state members with a single action or next state depends on previous state, I'll use reducer. Otherwise, I'll use useState. 
+* I use [Color Hunt](https://colorhunt.co/) a lot to get color inspiration. 
+  - [Google color picker](https://www.google.com/search?q=colorpicker) is also good for picking up the final color. 
+
+# Day 16. Sat, July 6
+
+* Learning Redux, MobX and RxJs for my app. 
+  - [MobX for Redux Developers](https://dev.to/swyx/introduction-to-mobx-4-for-reactredux-developers-3k07)
+
+# Sun, July 7
+
+* Focus input when color is selected. 
+
+# Day 17. Mon, July 8
+
+* Wondering which one to use, useReducer+Context vs. Redux. I decided to use both. 
+  - useReducer + Context for page-wise data. For example, product data for product editor. 
+  - Redux - app-wise data like products. (Something that can be used in multiple pages.)
+
+# Day 18. Tue, July 9
+
+* Applied the Reducer to Editor. (According to the rule I decided yesterday.)
+* Send changes from EditableDiv (It can be done with state and useEffect)
+* Can delete colors. 
+* 

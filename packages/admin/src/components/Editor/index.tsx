@@ -83,14 +83,17 @@ export default ({ product }: Props) => {
           </FormGroup>
         </Main>
         <Side>
-          <FormGroup>
-            <Label htmlFor='price'>Price</Label>
-            <Input id='price' type='text' placeholder='price' />
-          </FormGroup>
-          <FormGroup>
-            <Label htmlFor='discountedPrice'>Discounted Price</Label>
-            <Input id='discountedPrice' type='text' placeholder='discountedPrice' />
-          </FormGroup>
+          <FormSection>
+            <SectionHead>Price</SectionHead>
+            <FormGroup>
+              <Label htmlFor='price'>Price</Label>
+              <Input id='price' type='text' placeholder='price' />
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor='discountedPrice'>Discounted Price</Label>
+              <Input id='discountedPrice' type='text' placeholder='discounted price' />
+            </FormGroup>
+          </FormSection>
           <FormGroup>
             <Label>Featured Image</Label>
           </FormGroup>
@@ -142,6 +145,25 @@ const Side = styled.div(({ theme: { spacing } }) => ({
   marginLeft: spacing.base,
 }))
 
-const Input = styled.input({
+const FormSection = styled.section(({ theme: { colors, spacing, text } }) => ({
+  background: colors.white,
+  padding: spacing.small,
+  border: `1px solid ${colors.gray_dark}`,
+  borderRadius: spacing.xtiny,
+
+  label: {
+    ...text.regular,
+  },
+}))
+
+const SectionHead = styled.h3(({ theme: { text } }) => ({
+  ...text.large,
+  marginTop: 0,
+}))
+
+const Input = styled.input(({ theme: { spacing, text } }) => ({
   width: '100%',
-})
+  boxSizing: 'border-box',
+  padding: `${spacing.tiny}px ${spacing.small}px`,
+  ...text.large,
+}))

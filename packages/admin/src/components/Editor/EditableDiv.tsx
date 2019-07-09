@@ -6,6 +6,7 @@ import { useOutsideClickDetector } from '../hooks'
 
 interface Props {
   text: string
+  onChange: (text: string) => void
 }
 
 type Mode = 'DIV' | 'INPUT'
@@ -15,6 +16,7 @@ interface State {
   text: string
   savedText: string
   giveFocus: boolean
+  sendChange: boolean
 }
 
 // prettier-ignore
@@ -24,6 +26,7 @@ type Action =
   | { type: 'RESET_TEXT' }
   | { type: 'CHANGE_TEXT'; text: string }
   | { type: 'FOCUS_GIVEN' }
+  | { type: 'CHANGE_SENT' }
 
 const reducer = (state: State, action: Action) => {
   switch (action.type) {
@@ -49,6 +52,7 @@ const reducer = (state: State, action: Action) => {
         ...state,
         mode: 'DIV' as Mode,
         text: state.text,
+        sendChange: true,
       }
     case 'RESET_TEXT':
       return {
@@ -56,21 +60,26 @@ const reducer = (state: State, action: Action) => {
         mode: 'DIV' as Mode,
         text: state.savedText,
       }
+    case 'CHANGE_SENT':
+      return {
+        ...state,
+        sendChange: false,
+      }
     default:
       return state
   }
 }
 
-export default ({ text: initialText }: Props) => {
-  const [{ mode, text, giveFocus }, dispatch] = useReducer<(state: State, action: Action) => State>(
-    reducer,
-    {
-      mode: 'DIV' as Mode,
-      text: initialText,
-      savedText: initialText,
-      giveFocus: false,
-    }
-  )
+export default ({ text: initialText, onChange }: Props) => {
+  const [{ mode, text, giveFocus, sendChange }, dispatch] = useReducer<
+    (state: State, action: Action) => State
+  >(reducer, {
+    mode: 'DIV' as Mode,
+    text: initialText,
+    savedText: initialText,
+    giveFocus: false,
+    sendChange: false,
+  })
 
   const divRef = useRef<HTMLDivElement>(null!)
   const inputRef = useRef<HTMLInputElement>(null!)
@@ -82,6 +91,11 @@ export default ({ text: initialText }: Props) => {
     if (giveFocus) {
       inputRef.current.focus()
       dispatch({ type: 'FOCUS_GIVEN' })
+    }
+
+    if (sendChange) {
+      onChange(text)
+      dispatch({ type: 'CHANGE_SENT' })
     }
   })
 

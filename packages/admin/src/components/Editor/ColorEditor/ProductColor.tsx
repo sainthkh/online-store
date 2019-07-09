@@ -56,7 +56,17 @@ export default ({ color: { id, name, colorHex, images }, onChange, index, onMove
               </Popover>
             ) : null}
           </ColorButton>
-          <EditableDiv text={name} />
+          <EditableDiv
+            text={name}
+            onChange={(newName: string) => {
+              onChange({
+                id,
+                colorHex,
+                name: newName,
+                images,
+              })
+            }}
+          />
         </ColorName>
         <div>
           <Button color='secondary'>Add Image</Button>

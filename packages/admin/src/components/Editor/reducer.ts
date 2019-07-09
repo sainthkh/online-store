@@ -77,6 +77,10 @@ export const reducer: ReducerFunc = (state: State, action: Action) => {
         draft.colors.splice(action.hoverIndex, 0, dragColor)
         return
       }
+      case 'DELETE_COLOR': {
+        draft.colors = state.colors.filter(color => color.id !== action.id)
+        return
+      }
       default:
         return state
     }

@@ -41,9 +41,8 @@ export default ({ product }: Props) => {
               onChange={(event: ChangeEvent<HTMLTextAreaElement>) => {
                 dispatch({ type: 'CHANGE_DESCRIPTION', text: event!.target!.value })
               }}
-            >
-              {description}
-            </Description>
+              value={description}
+            />
           </FormGroup>
           <FormGroup>
             <Label>Colors / Images</Label>

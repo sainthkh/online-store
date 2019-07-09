@@ -7,6 +7,7 @@ import { useOutsideClickDetector } from '../hooks'
 interface Props {
   text: string
   onChange: (text: string) => void
+  onActivate?: (activated: boolean) => void
 }
 
 type Mode = 'DIV' | 'INPUT'
@@ -17,6 +18,7 @@ interface State {
   savedText: string
   giveFocus: boolean
   sendChange: boolean
+  sendActivate: boolean
 }
 
 // prettier-ignore
@@ -27,6 +29,7 @@ type Action =
   | { type: 'CHANGE_TEXT'; text: string }
   | { type: 'FOCUS_GIVEN' }
   | { type: 'CHANGE_SENT' }
+  | { type: 'ACTIVATE_SENT' }
 
 const reducer = (state: State, action: Action) => {
   switch (action.type) {
@@ -36,6 +39,7 @@ const reducer = (state: State, action: Action) => {
         mode: 'INPUT' as Mode,
         giveFocus: true,
         savedText: state.text,
+        sendActivate: true,
       }
     case 'FOCUS_GIVEN':
       return {
@@ -53,12 +57,14 @@ const reducer = (state: State, action: Action) => {
         mode: 'DIV' as Mode,
         text: state.text,
         sendChange: true,
+        sendActivate: true,
       }
     case 'RESET_TEXT':
       return {
         ...state,
         mode: 'DIV' as Mode,
         text: state.savedText,
+        sendActivate: true,
       }
     case 'CHANGE_SENT':
       return {
@@ -70,8 +76,8 @@ const reducer = (state: State, action: Action) => {
   }
 }
 
-export default ({ text: initialText, onChange }: Props) => {
-  const [{ mode, text, giveFocus, sendChange }, dispatch] = useReducer<
+export default ({ text: initialText, onChange, onActivate }: Props) => {
+  const [{ mode, text, giveFocus, sendChange, sendActivate }, dispatch] = useReducer<
     (state: State, action: Action) => State
   >(reducer, {
     mode: 'DIV' as Mode,
@@ -79,6 +85,7 @@ export default ({ text: initialText, onChange }: Props) => {
     savedText: initialText,
     giveFocus: false,
     sendChange: false,
+    sendActivate: false,
   })
 
   const divRef = useRef<HTMLDivElement>(null!)
@@ -96,6 +103,13 @@ export default ({ text: initialText, onChange }: Props) => {
     if (sendChange) {
       onChange(text)
       dispatch({ type: 'CHANGE_SENT' })
+    }
+
+    if (sendActivate) {
+      if (onActivate) {
+        onActivate(mode === 'INPUT')
+      }
+      dispatch({ type: 'ACTIVATE_SENT' })
     }
   })
 

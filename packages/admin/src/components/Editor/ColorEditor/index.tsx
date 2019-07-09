@@ -25,6 +25,9 @@ export default ({ colors }: Props) => {
             onMove={(dragIndex, hoverIndex) => {
               dispatch({ type: 'MOVE_COLOR', dragIndex, hoverIndex })
             }}
+            onDelete={() => {
+              dispatch({ type: 'DELETE_COLOR', id: color.id })
+            }}
           />
         )
       })}

@@ -5,6 +5,8 @@ import Popover from '../../Popover'
 import { SketchPicker, ColorResult } from 'react-color'
 import EditableDiv from '../EditableDiv'
 import { styled } from '@beanovia/theme'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import Sortable from '../Sortable'
 import { COLOR } from './itemTypes'
 
@@ -13,15 +15,33 @@ interface Props {
   index: number
   onChange: (color: Color) => void
   onMove: (dragIndex: number, hoverIndex: number) => void
+  onDelete: () => void
 }
 
-export default ({ color: { id, name, colorHex, images }, onChange, index, onMove }: Props) => {
+export default ({
+  color: { id, name, colorHex, images },
+  onChange,
+  index,
+  onMove,
+  onDelete,
+}: Props) => {
   const [show, showColorPicker] = useState<boolean>(false)
   const [enabled, enableSwatch] = useState<boolean>(true)
+  const [isNameEdited, nameIsEdited] = useState<boolean>(false)
+  const [deleteButton, showDeleteButton] = useState<boolean>(false)
 
   return (
     <Sortable itemType={COLOR} itemId={id} index={index} onMove={onMove}>
-      <ColorItem>
+      <ColorItem
+        onMouseEnter={() => {
+          if (!isNameEdited) {
+            showDeleteButton(true)
+          }
+        }}
+        onMouseLeave={() => {
+          showDeleteButton(false)
+        }}
+      >
         <ColorName>
           <ColorButton>
             <Swatch
@@ -66,7 +86,19 @@ export default ({ color: { id, name, colorHex, images }, onChange, index, onMove
                 images,
               })
             }}
+            onActivate={(activate: boolean) => {
+              nameIsEdited(activate)
+            }}
           />
+          {deleteButton ? (
+            <DeleteButton
+              onClick={() => {
+                onDelete()
+              }}
+            >
+              <FontAwesomeIcon icon={faTrash} />
+            </DeleteButton>
+          ) : null}
         </ColorName>
         <div>
           <Button color='secondary'>Add Image</Button>
@@ -110,12 +142,24 @@ const Swatch = styled.div<SwatchProps>(({ color }) => ({
   cursor: 'pointer',
 }))
 
+const DeleteButton = styled.button(({ theme: { colors, spacing } }) => ({
+  marginLeft: 'auto',
+  border: 'none',
+  background: 'none',
+  cursor: 'pointer',
+  padding: spacing.xtiny,
+  borderRadius: spacing.xtiny,
+
+  ':hover': {
+    background: colors.gray_dark,
+  },
+}))
+
 export const Button = styled.button(({ theme: { colors, spacing, text } }) => ({
   border: 'none',
   borderRadius: 3,
   padding: `${spacing.xtiny}px ${spacing.tiny}px`,
-  background: colors.secondary,
-  color: colors.white,
+  background: colors.white,
   boxShadow: `1px 1px 3px 1px ${colors.gray_darker}`,
   cursor: 'pointer',
   ...text.small,

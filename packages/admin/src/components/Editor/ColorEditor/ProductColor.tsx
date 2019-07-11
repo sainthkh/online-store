@@ -27,14 +27,14 @@ export default ({
 }: Props) => {
   const [show, showColorPicker] = useState<boolean>(false)
   const [enabled, enableSwatch] = useState<boolean>(true)
-  const [isNameEdited, nameIsEdited] = useState<boolean>(false)
+  const [isNameEditting, nameIsEditting] = useState<boolean>(false)
   const [deleteButton, showDeleteButton] = useState<boolean>(false)
 
   return (
     <Sortable itemType={COLOR} itemId={id} index={index} onMove={onMove}>
       <ColorItem
         onMouseEnter={() => {
-          if (!isNameEdited) {
+          if (!isNameEditting) {
             showDeleteButton(true)
           }
         }}
@@ -87,7 +87,8 @@ export default ({
               })
             }}
             onActivate={(activate: boolean) => {
-              nameIsEdited(activate)
+              nameIsEditting(activate)
+              showDeleteButton(false)
             }}
           />
           {deleteButton ? (

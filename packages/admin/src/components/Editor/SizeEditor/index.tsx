@@ -58,22 +58,8 @@ export default ({ sizes }: Props) => {
   return (
     <SizeEditor>
       <Sizes>
-        {sizes.map(({ id, size }) => {
-          return (
-            <Size
-              key={id}
-              size={size}
-              onChange={(text: string) => {
-                editorDispatch({
-                  type: 'CHANGE_SIZE',
-                  size: {
-                    id,
-                    size: text,
-                  },
-                })
-              }}
-            />
-          )
+        {sizes.map(size => {
+          return <Size key={size.id} size={size} />
         })}
       </Sizes>
       <AddSizeWrap>
@@ -105,7 +91,10 @@ export default ({ sizes }: Props) => {
 
 const SizeEditor = styled.div({})
 
-const Sizes = styled.div({})
+const Sizes = styled.div(({ theme: { spacing } }) => ({
+  display: 'flex',
+  marginBottom: spacing.small,
+}))
 
 const AddSizeWrap = styled.div({
   display: 'flex',

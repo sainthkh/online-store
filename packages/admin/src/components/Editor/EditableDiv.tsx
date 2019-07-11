@@ -71,6 +71,11 @@ const reducer = (state: State, action: Action) => {
         ...state,
         sendChange: false,
       }
+    case 'ACTIVATE_SENT':
+      return {
+        ...state,
+        sendActivate: false,
+      }
     default:
       return state
   }

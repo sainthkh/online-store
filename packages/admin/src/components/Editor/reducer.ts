@@ -99,6 +99,14 @@ export const reducer: ReducerFunc = (state: State, action: Action) => {
         })
         return
       }
+      case 'CHANGE_SIZE': {
+        draft.sizes = state.sizes.map(size => (size.id === action.size.id ? action.size : size))
+        return
+      }
+      case 'DELETE_SIZE': {
+        draft.sizes = state.sizes.filter(size => size.id !== action.id)
+        return
+      }
       default:
         return state
     }

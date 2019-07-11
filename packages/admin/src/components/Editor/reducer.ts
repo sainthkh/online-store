@@ -1,4 +1,4 @@
-import { EditableColor, Product, Color } from './product'
+import { EditableColor, Product, Color, EditableSize } from './product'
 import produce from 'immer'
 
 interface State {
@@ -6,6 +6,8 @@ interface State {
   description: string
   colors: EditableColor[]
   nextColorId: number
+  sizes: EditableSize[]
+  nextSizeId: number
 }
 
 // prettier-ignore
@@ -16,12 +18,16 @@ export type Action =
   | { type: 'CHANGE_COLOR'; color: EditableColor }
   | { type: 'MOVE_COLOR'; dragIndex: number; hoverIndex: number }
   | { type: 'DELETE_COLOR'; id: string }
+  | { type: 'ADD_SIZE'; size: string }
+  | { type: 'CHANGE_SIZE'; size: string }
+  | { type: 'MOVE_SIZE'; dragIndex: number; hoverIndex: number }
+  | { type: 'DELETE_SIZE'; id: string }
 
 export interface InitArgs {
   product: Product
 }
 
-export const init = ({ product: { name, description, colors } }: InitArgs) => ({
+export const init = ({ product: { name, description, colors, sizes } }: InitArgs) => ({
   name,
   description,
   colors: colors.map(({ colorHex, name: colorName, images }, i) => ({
@@ -32,6 +38,11 @@ export const init = ({ product: { name, description, colors } }: InitArgs) => ({
     images,
   })),
   nextColorId: colors.length,
+  sizes: sizes.map((size, i) => ({
+    id: `size-${i}`,
+    size,
+  })),
+  nextSizeId: sizes.length,
 })
 
 export type ReducerFunc = (state: State, action: Action) => State
@@ -79,6 +90,13 @@ export const reducer: ReducerFunc = (state: State, action: Action) => {
       }
       case 'DELETE_COLOR': {
         draft.colors = state.colors.filter(color => color.id !== action.id)
+        return
+      }
+      case 'ADD_SIZE': {
+        draft.sizes.push({
+          id: `size-${state.nextSizeId}`,
+          size: action.size,
+        })
         return
       }
       default:

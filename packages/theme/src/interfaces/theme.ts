@@ -18,6 +18,7 @@ export interface Theme {
     gray_darker: string
     text: string
     white: string
+    error: string
   }
   spacing: {
     xtiny: number

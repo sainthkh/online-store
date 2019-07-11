@@ -15,6 +15,7 @@ const theme: Theme = {
     gray_darker: '#99a9b4',
     text: '#0b0b0d',
     white: '#fff',
+    error: '#af0404',
   },
   spacing: {
     xtiny: 4,

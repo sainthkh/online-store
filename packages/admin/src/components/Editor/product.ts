@@ -31,6 +31,11 @@ export interface EditableColor extends Color {
   id: string
 }
 
+export interface EditableSize {
+  id: string
+  size: string
+}
+
 export interface Variation {
   sku: string
   color: string

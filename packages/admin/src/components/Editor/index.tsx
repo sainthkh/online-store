@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default ({ product }: Props) => {
-  const [{ name, description, colors }, dispatch] = useReducer<ReducerFunc, InitArgs>(
+  const [{ name, description, colors, sizes }, dispatch] = useReducer<ReducerFunc, InitArgs>(
     reducer,
     { product },
     init
@@ -50,7 +50,7 @@ export default ({ product }: Props) => {
           </FormGroup>
           <FormGroup>
             <Label>Sizes</Label>
-            <SizeEditor />
+            <SizeEditor sizes={sizes} />
           </FormGroup>
           <FormGroup>
             <Label>Variations</Label>

@@ -2,7 +2,7 @@ import React, { useReducer, useRef, ChangeEvent, KeyboardEvent, useEffect } from
 import { styled } from '@beanovia/theme'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { useOutsideClickDetector } from '../hooks'
+import { useOutsideClickDetector } from '../../hooks'
 
 interface Props {
   text: string

@@ -1,7 +1,7 @@
 import React, { useContext, ChangeEvent, useReducer } from 'react'
 import DispatchContext from '../Context'
 import { styled } from '@beanovia/theme'
-import { Button } from '../Button'
+import { Button } from '../components/Button'
 import { EditableSize } from '../product'
 import Size from './Size'
 

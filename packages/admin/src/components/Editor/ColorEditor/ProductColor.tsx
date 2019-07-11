@@ -3,11 +3,11 @@ import ChangeColor from 'color'
 import Color from './Color'
 import Popover from '../../Popover'
 import { SketchPicker, ColorResult } from 'react-color'
-import EditableDiv from '../EditableDiv'
+import EditableDiv from '../components/EditableDiv'
 import { styled } from '@beanovia/theme'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import Sortable from '../SortableV'
+import Sortable from '../components/SortableV'
 import { COLOR } from '../itemTypes'
 
 interface Props {

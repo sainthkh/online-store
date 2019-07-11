@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react'
 import DispatchContext from '../Context'
-import EditableDiv from '../EditableDiv'
+import EditableDiv from '../components/EditableDiv'
 import { EditableSize } from '../product'
 import { styled } from '@beanovia/theme'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import Sortable from '../SortableH'
+import Sortable from '../components/SortableH'
 import { SIZE } from '../itemTypes'
 
 interface Props {

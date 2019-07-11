@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import DispatchContext from '../Context'
 import { EditableColor } from '../product'
 import ProductColor from './ProductColor'
-import { Button } from '../Button'
+import { Button } from '../components/Button'
 
 interface Props {
   colors: EditableColor[]

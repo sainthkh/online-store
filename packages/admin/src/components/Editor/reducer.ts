@@ -97,10 +97,17 @@ export const reducer: ReducerFunc = (state: State, action: Action) => {
           id: `size-${state.nextSizeId}`,
           size: action.size,
         })
+        draft.nextSizeId = state.nextSizeId + 1
         return
       }
       case 'CHANGE_SIZE': {
         draft.sizes = state.sizes.map(size => (size.id === action.size.id ? action.size : size))
+        return
+      }
+      case 'MOVE_SIZE': {
+        const dragSize = state.sizes[action.dragIndex]
+        draft.sizes.splice(action.dragIndex, 1)
+        draft.sizes.splice(action.hoverIndex, 0, dragSize)
         return
       }
       case 'DELETE_SIZE': {

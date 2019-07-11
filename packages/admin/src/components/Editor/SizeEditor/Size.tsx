@@ -5,56 +5,68 @@ import { EditableSize } from '../product'
 import { styled } from '@beanovia/theme'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import Sortable from '../SortableH'
+import { SIZE } from '../itemTypes'
 
 interface Props {
   size: EditableSize
+  index: number
 }
 
-export default ({ size }: Props) => {
+export default ({ size, index }: Props) => {
   const dispatch = useContext(DispatchContext)
   const [deleteButton, showDeleteButton] = useState<boolean>(false)
   const [isNameEditting, nameIsEditting] = useState<boolean>(false)
 
   return (
-    <Wrap
-      onMouseEnter={() => {
-        if (!isNameEditting) {
-          showDeleteButton(true)
-        }
-      }}
-      onMouseLeave={() => {
-        showDeleteButton(false)
+    <Sortable
+      itemType={SIZE}
+      itemId={size.id}
+      index={index}
+      onMove={(dragIndex, hoverIndex) => {
+        dispatch({ type: 'MOVE_SIZE', dragIndex, hoverIndex })
       }}
     >
-      <EditableDiv
-        text={size.size}
-        onChange={(text: string) => {
-          dispatch({
-            type: 'CHANGE_SIZE',
-            size: {
-              id: size.id,
-              size: text,
-            },
-          })
+      <Wrap
+        onMouseEnter={() => {
+          if (!isNameEditting) {
+            showDeleteButton(true)
+          }
         }}
-        onActivate={(activate: boolean) => {
-          nameIsEditting(activate)
+        onMouseLeave={() => {
           showDeleteButton(false)
         }}
-      />
-      {deleteButton ? (
-        <DeleteButton
-          onClick={() => {
+      >
+        <EditableDiv
+          text={size.size}
+          onChange={(text: string) => {
             dispatch({
-              type: 'DELETE_SIZE',
-              id: size.id,
+              type: 'CHANGE_SIZE',
+              size: {
+                id: size.id,
+                size: text,
+              },
             })
           }}
-        >
-          <FontAwesomeIcon icon={faTrash} />
-        </DeleteButton>
-      ) : null}
-    </Wrap>
+          onActivate={(activate: boolean) => {
+            nameIsEditting(activate)
+            showDeleteButton(false)
+          }}
+        />
+        {deleteButton ? (
+          <DeleteButton
+            onClick={() => {
+              dispatch({
+                type: 'DELETE_SIZE',
+                id: size.id,
+              })
+            }}
+          >
+            <FontAwesomeIcon icon={faTrash} />
+          </DeleteButton>
+        ) : null}
+      </Wrap>
+    </Sortable>
   )
 }
 

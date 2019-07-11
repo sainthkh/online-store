@@ -58,8 +58,8 @@ export default ({ sizes }: Props) => {
   return (
     <SizeEditor>
       <Sizes>
-        {sizes.map(size => {
-          return <Size key={size.id} size={size} />
+        {sizes.map((size, i) => {
+          return <Size key={size.id} size={size} index={i} />
         })}
       </Sizes>
       <AddSizeWrap>

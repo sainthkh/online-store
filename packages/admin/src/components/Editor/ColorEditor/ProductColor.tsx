@@ -7,8 +7,8 @@ import EditableDiv from '../EditableDiv'
 import { styled } from '@beanovia/theme'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import Sortable from '../Sortable'
-import { COLOR } from './itemTypes'
+import Sortable from '../SortableV'
+import { COLOR } from '../itemTypes'
 
 interface Props {
   color: Color

@@ -1,4 +1,4 @@
-import React, { useContext, useState, ChangeEvent, useReducer } from 'react'
+import React, { useContext, ChangeEvent, useReducer } from 'react'
 import DispatchContext from '../Context'
 import { styled } from '@beanovia/theme'
 import { Button } from '../Button'
@@ -59,7 +59,21 @@ export default ({ sizes }: Props) => {
     <SizeEditor>
       <Sizes>
         {sizes.map(({ id, size }) => {
-          return <Size key={id} size={size} />
+          return (
+            <Size
+              key={id}
+              size={size}
+              onChange={(text: string) => {
+                editorDispatch({
+                  type: 'CHANGE_SIZE',
+                  size: {
+                    id,
+                    size: text,
+                  },
+                })
+              }}
+            />
+          )
         })}
       </Sizes>
       <AddSizeWrap>

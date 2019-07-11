@@ -19,7 +19,7 @@ export type Action =
   | { type: 'MOVE_COLOR'; dragIndex: number; hoverIndex: number }
   | { type: 'DELETE_COLOR'; id: string }
   | { type: 'ADD_SIZE'; size: string }
-  | { type: 'CHANGE_SIZE'; size: string }
+  | { type: 'CHANGE_SIZE'; size: EditableSize }
   | { type: 'MOVE_SIZE'; dragIndex: number; hoverIndex: number }
   | { type: 'DELETE_SIZE'; id: string }
 

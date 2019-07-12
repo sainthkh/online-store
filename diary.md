@@ -234,4 +234,20 @@ First Goal: Big Example.
 * Applied the Reducer to Editor. (According to the rule I decided yesterday.)
 * Send changes from EditableDiv (It can be done with state and useEffect)
 * Can delete colors. 
-* 
+
+# Day 19. Wed, July 10
+
+* Added mode to EditableDiv.
+
+# Day 20. Thu, July 11
+
+* Reverted the changes in EditableDiv. I felt that it's unnatural to create EditableDiv in Input mode. It's better to create an input next to "Add Size" button.
+* CRUD of size editor. 
+* Created SortableV and SortableH. -> Currently considering changing "half-over" rule to just inside the hover target. 
+
+# Day 21. Fri, July 12
+
+* Implemented CRUD of VariationEditor. Needs design. 
+* Used `flatMap` to generate combinations with two `map` functions. 
+* To use `colspan` in React, it should be `colSpan`. Watch out for the case. 
+* To use `type='number'` in React, use `event!.target!.validity!.valid` to check validation and `parseInt` to get number value. [Check this codepen](https://codepen.io/JimmayVV/pen/zLaZBL?editors=0010)

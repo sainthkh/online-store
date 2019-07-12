@@ -3,6 +3,7 @@ import { styled } from '@beanovia/theme'
 import DispatchContext from './Context'
 import ColorEditor from './ColorEditor'
 import SizeEditor from './SizeEditor'
+import VariationEditor from './VariationEditor'
 import { Product } from './product'
 import reducer, { ReducerFunc, InitArgs, init } from './reducer'
 
@@ -11,11 +12,10 @@ interface Props {
 }
 
 export default ({ product }: Props) => {
-  const [{ name, description, colors, sizes }, dispatch] = useReducer<ReducerFunc, InitArgs>(
-    reducer,
-    { product },
-    init
-  )
+  const [
+    { name, description, colors, sizes, variations, variationsNeedUpdate },
+    dispatch,
+  ] = useReducer<ReducerFunc, InitArgs>(reducer, { product }, init)
 
   return (
     <DispatchContext.Provider value={dispatch}>
@@ -54,32 +54,7 @@ export default ({ product }: Props) => {
           </FormGroup>
           <FormGroup>
             <Label>Variations</Label>
-            <table>
-              <thead>
-                <tr>
-                  <th>sku</th>
-                  <th>color</th>
-                  <th>size</th>
-                  <th>stock</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <input type='text' />
-                  </td>
-                  <td>
-                    <input type='text' />
-                  </td>
-                  <td>
-                    <input type='text' />
-                  </td>
-                  <td>
-                    <input type='text' />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <VariationEditor variations={variations} needsUpdate={variationsNeedUpdate} />
           </FormGroup>
         </Main>
         <Side>

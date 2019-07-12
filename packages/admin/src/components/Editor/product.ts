@@ -21,9 +21,12 @@ export enum Featured {
   FEATURED,
 }
 
-export interface Color {
+export interface ColorValue {
   colorHex: string
   name: string
+}
+
+export interface Color extends ColorValue {
   images: string[]
 }
 
@@ -37,10 +40,14 @@ export interface EditableSize {
 }
 
 export interface Variation {
-  sku: string
-  color: string
+  color: ColorValue
   size: string
+  sku: string
   stock: number
+}
+
+export interface EditableVariation extends Variation {
+  id: string
 }
 
 export const emptyProduct: () => Product = () => ({

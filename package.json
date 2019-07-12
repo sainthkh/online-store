@@ -10,6 +10,6 @@
     "tslint-react": "4.0.0"
   },
   "dependencies": {
-    "typescript": "3.5.2"
+    "typescript": "3.5.3"
   }
 }

@@ -8406,10 +8406,10 @@ react-dnd-html5-backend@9.3.2:
   dependencies:
     dnd-core "^9.3.2"
 
-react-dnd-touch-backend@9.3.2:
-  version "9.3.2"
-  resolved "https://registry.yarnpkg.com/react-dnd-touch-backend/-/react-dnd-touch-backend-9.3.2.tgz#073dfd7c845d211ef4ab2e914b99e0d54676cda1"
-  integrity sha512-wXHFWMmr50yJh1xCSvz7MeZoyL7C7CI5kRDco1XZzZQY7Ml0oCzRaQ/VLXZavkRyVS+KzfvU6A7rWM3N8WAVwA==
+react-dnd-touch-backend@9.3.3:
+  version "9.3.3"
+  resolved "https://registry.yarnpkg.com/react-dnd-touch-backend/-/react-dnd-touch-backend-9.3.3.tgz#c7a07b27fd5352bd7b10e2986f1e36394864f3c9"
+  integrity sha512-CG3IsvcQFQgGam3gXAaDkxjjYsCwCXsQ5EqxRwu0O0mvtrRKmH5Dx657bFgndMGQo8D89Whf7xSf7pO5FzQ+8A==
   dependencies:
     "@types/invariant" "^2.2.30"
     dnd-core "^9.3.2"

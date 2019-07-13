@@ -4,8 +4,10 @@ import DispatchContext from './Context'
 import ColorEditor from './ColorEditor'
 import SizeEditor from './SizeEditor'
 import VariationEditor from './VariationEditor'
+import PriceEditor from './PriceEditor'
 import { Product } from './product'
 import reducer, { ReducerFunc, InitArgs, init } from './reducer'
+import { FormGroup, Label } from './components/Form'
 
 interface Props {
   product: Product
@@ -13,7 +15,17 @@ interface Props {
 
 export default ({ product }: Props) => {
   const [
-    { name, description, colors, sizes, variations, variationsNeedUpdate },
+    {
+      name,
+      description,
+      colors,
+      sizes,
+      variations,
+      variationsNeedUpdate,
+      price,
+      discountRate,
+      discountedPrice,
+    },
     dispatch,
   ] = useReducer<ReducerFunc, InitArgs>(reducer, { product }, init)
 
@@ -58,17 +70,11 @@ export default ({ product }: Props) => {
           </FormGroup>
         </Main>
         <Side>
-          <FormSection>
-            <SectionHead>Price</SectionHead>
-            <FormGroup>
-              <Label htmlFor='price'>Price</Label>
-              <Input id='price' type='text' placeholder='price' />
-            </FormGroup>
-            <FormGroup>
-              <Label htmlFor='discountedPrice'>Discounted Price</Label>
-              <Input id='discountedPrice' type='text' placeholder='discounted price' />
-            </FormGroup>
-          </FormSection>
+          <PriceEditor
+            price={price}
+            discountRate={discountRate}
+            discountedPrice={discountedPrice}
+          />
           <FormGroup>
             <Label>Featured Image</Label>
           </FormGroup>
@@ -89,17 +95,6 @@ const Main = styled.div({
   width: '100%',
 })
 
-const FormGroup = styled.div({
-  width: '100%',
-})
-
-const Label = styled.label(({ theme: { spacing, text } }) => ({
-  display: 'block',
-  ...text.h3,
-  marginTop: spacing.small,
-  marginBottom: spacing.small,
-}))
-
 const Name = styled.input(({ theme: { spacing, text } }) => ({
   width: '100%',
   boxSizing: 'border-box',
@@ -118,27 +113,4 @@ const Side = styled.div(({ theme: { spacing } }) => ({
   width: 300,
   flexShrink: 0,
   marginLeft: spacing.base,
-}))
-
-const FormSection = styled.section(({ theme: { colors, spacing, text } }) => ({
-  background: colors.white,
-  padding: spacing.small,
-  border: `1px solid ${colors.gray_dark}`,
-  borderRadius: spacing.xtiny,
-
-  label: {
-    ...text.regular,
-  },
-}))
-
-const SectionHead = styled.h3(({ theme: { text } }) => ({
-  ...text.large,
-  marginTop: 0,
-}))
-
-const Input = styled.input(({ theme: { spacing, text } }) => ({
-  width: '100%',
-  boxSizing: 'border-box',
-  padding: `${spacing.tiny}px ${spacing.small}px`,
-  ...text.large,
 }))

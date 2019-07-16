@@ -15,7 +15,7 @@
     "@fortawesome/free-solid-svg-icons": "5.9.0",
     "@fortawesome/react-fontawesome": "0.1.4",
     "emotion-theming": "10.0.14",
-    "graphql-react": "8.2.0",
+    "graphql-react": "8.3.0",
     "next": "9.0.1",
     "next-graphql-react": "3.0.2",
     "normalize.css": "8.0.1",

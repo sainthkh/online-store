@@ -739,7 +739,7 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
-"@babel/runtime@^7.4.2", "@babel/runtime@^7.4.3", "@babel/runtime@^7.4.4":
+"@babel/runtime@^7.4.2", "@babel/runtime@^7.4.3", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.4":
   version "7.5.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.5.4.tgz#cb7d1ad7c6d65676e66b47186577930465b5271b"
   integrity sha512-Na84uwyImZZc3FKf4aUF1tysApzwf3p2yuFBIyBfbzT5glzKTdvYI4KVW4kcgjrzoGUjC7w3YyCHcJKaRxsr2Q==
@@ -2501,12 +2501,12 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2:
   resolved "https://registry.yarnpkg.com/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
   integrity sha1-TK+tdrxi8C+gObL5Tpo906ORpyU=
 
-graphql-react@8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/graphql-react/-/graphql-react-8.2.0.tgz#4cb9c72595404a7bc328da5f1f9cbfb8df874579"
-  integrity sha512-b9yF/Bm4nDs5Whylm+j3fHcgnYoWTIrivEar9DB6cYqhdchf7JzgFI3tVsfZjnSXtdkL97bO8bsghNh8vZ6omg==
+graphql-react@8.3.0:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/graphql-react/-/graphql-react-8.3.0.tgz#4aae4fb964691c1956e72a4c6581e314d1cb19dd"
+  integrity sha512-UfqIyFFHPJQ6cA0FzRvZVUgRXfROtWbIG4Pu30E6jS2h75xIF4MeVOU5TJHdgdn7ydOpTH9iNjfw/n4NqjBNZw==
   dependencies:
-    "@babel/runtime" "^7.4.3"
+    "@babel/runtime" "^7.5.4"
     extract-files "^5.0.1"
     fnv1a "^1.0.1"
     mitt "^1.1.3"

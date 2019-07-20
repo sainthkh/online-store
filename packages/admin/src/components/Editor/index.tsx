@@ -5,6 +5,7 @@ import ColorEditor from './ColorEditor'
 import SizeEditor from './SizeEditor'
 import VariationEditor from './VariationEditor'
 import PriceEditor from './PriceEditor'
+import PublishManager from './PublishManager'
 import { Product } from './product'
 import reducer, { ReducerFunc, InitArgs, init } from './reducer'
 import { FormGroup, Label } from './components/Form'
@@ -70,17 +71,12 @@ export default ({ product }: Props) => {
           </FormGroup>
         </Main>
         <Side>
+          <PublishManager />
           <PriceEditor
             price={price}
             discountRate={discountRate}
             discountedPrice={discountedPrice}
           />
-          <FormGroup>
-            <Label>Featured Image</Label>
-          </FormGroup>
-          <FormGroup>
-            <Label>Featured</Label>
-          </FormGroup>
         </Side>
       </FlexBox>
     </DispatchContext.Provider>

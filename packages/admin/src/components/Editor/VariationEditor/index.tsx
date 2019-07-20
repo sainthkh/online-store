@@ -1,6 +1,8 @@
 import React, { useContext, ChangeEvent } from 'react'
 import DispatchContext from '../Context'
 import { EditableVariation } from '../product'
+import { Button as ButtonBase } from '../components/Button'
+import { styled } from '@beanovia/theme'
 
 interface Props {
   variations: EditableVariation[]
@@ -14,38 +16,38 @@ export default ({ variations, needsUpdate }: Props) => {
     <>
       {needsUpdate ? (
         variations.length === 0 ? (
-          <div>
+          <MessageBox>
             Variations aren't generated yet.
-            <button
+            <Button
               onClick={() => {
                 dispatch({ type: 'GENERATE_VARIATIONS' })
               }}
             >
               Generate Variations
-            </button>
-          </div>
+            </Button>
+          </MessageBox>
         ) : (
-          <div>
+          <MessageBox>
             Colors or sizes are added or removed. Needs update.{' '}
-            <button
+            <Button
               onClick={() => {
                 dispatch({ type: 'UPDATE_VARIATIONS' })
               }}
             >
               Update Variations
-            </button>
-          </div>
+            </Button>
+          </MessageBox>
         )
       ) : null}
-      <table>
-        <thead>
+      <Table>
+        <Thead>
           <tr>
-            <th>color</th>
-            <th>size</th>
-            <th>sku</th>
-            <th>stock</th>
+            <Th>color</Th>
+            <Th>size</Th>
+            <Th>sku</Th>
+            <Th>stock</Th>
           </tr>
-        </thead>
+        </Thead>
         <tbody>
           {variations.length === 0 ? (
             <tr>
@@ -57,7 +59,7 @@ export default ({ variations, needsUpdate }: Props) => {
                 <td>{v.color.name}</td>
                 <td>{v.size}</td>
                 <td>
-                  <input
+                  <Input
                     type='text'
                     value={v.sku}
                     onChange={(event: ChangeEvent<HTMLInputElement>) => {
@@ -66,7 +68,7 @@ export default ({ variations, needsUpdate }: Props) => {
                   />
                 </td>
                 <td>
-                  <input
+                  <Input
                     type='number'
                     value={v.stock}
                     onChange={(event: ChangeEvent<HTMLInputElement>) => {
@@ -85,7 +87,34 @@ export default ({ variations, needsUpdate }: Props) => {
             ))
           )}
         </tbody>
-      </table>
+      </Table>
     </>
   )
 }
+
+const MessageBox = styled.div(({ theme: { spacing, text } }) => ({
+  ...text.large,
+  marginBottom: spacing.small,
+}))
+
+const Button = styled(ButtonBase)(({ theme: { spacing } }) => ({
+  marginLeft: spacing.base,
+}))
+
+const Table = styled.table({
+  width: '100%',
+})
+
+const Thead = styled.thead(({ theme: { colors } }) => ({
+  background: colors.black,
+  color: colors.white,
+}))
+
+const Th = styled.th(({ theme: { spacing } }) => ({
+  padding: spacing.tiny,
+}))
+
+const Input = styled.input({
+  width: '100%',
+  boxSizing: 'border-box',
+})

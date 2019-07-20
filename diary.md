@@ -251,3 +251,35 @@ First Goal: Big Example.
 * Used `flatMap` to generate combinations with two `map` functions. 
 * To use `colspan` in React, it should be `colSpan`. Watch out for the case. 
 * To use `type='number'` in React, use `event!.target!.validity!.valid` to check validation and `parseInt` to get number value. [Check this codepen](https://codepen.io/JimmayVV/pen/zLaZBL?editors=0010)
+* Set up [RenovateBot](https://github.com/renovatebot/renovate).
+
+# Day 22. Sat, July 13
+
+* Wrote PriceEditor
+
+# July 14
+
+* I wrote some plan on my Trello board. 
+
+# Day 23. Mon, July 15
+
+* Thought again about the FeaturedEditor. It might not be necessary. 
+
+# Day 24. Tue, July 16
+
+* Thought about the goal. This project should not be MERN version of WooCommerce. It should be multi-vendor platform.
+* Thought about making money by writing some articles about what I've learned. 
+
+# Day 25. Wed, July 17
+
+* Decided not to write articles. 
+* Decided to make a MVP of multi-vendor platform. 
+
+# NOTE: July 18 - July 19
+
+* Considering how to make money from this project. 
+* Decided to share my experience on scotch.io, WebDesignerDepot, SmashingMagazine, sitepoint. 
+
+# Day 25. Sat, July 20
+
+* 

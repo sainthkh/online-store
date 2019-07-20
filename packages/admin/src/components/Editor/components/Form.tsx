@@ -14,6 +14,7 @@ export const Label = styled.label(({ theme: { spacing, text } }) => ({
 export const FormSection = styled.section(({ theme: { colors, spacing, text } }) => ({
   background: colors.white,
   padding: spacing.small,
+  marginBottom: spacing.base,
   border: `1px solid ${colors.gray_dark}`,
   borderRadius: spacing.xtiny,
 

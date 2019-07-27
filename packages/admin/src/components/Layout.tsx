@@ -56,7 +56,7 @@ const Layout = ({ location, children }: Props) => {
   )
 }
 
-export default withRouter<Props>(Layout)
+export default withRouter<Props, React.FC<Props>>(Layout)
 
 const Flexbox = styled.div({
   display: 'flex',

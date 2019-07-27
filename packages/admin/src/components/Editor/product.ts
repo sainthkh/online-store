@@ -5,6 +5,7 @@ export interface Product {
   featuredImage: string
   price: number
   discountedPrice?: number
+  discountRate?: number
   featured: Featured
   colors: Color[]
   sizes: string[]

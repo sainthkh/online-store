@@ -10,6 +10,9 @@ interface State {
   nextSizeId: number
   variations: EditableVariation[]
   variationsNeedUpdate: boolean
+  price: number
+  discountedPrice?: number
+  discountRate?: number
 }
 
 // prettier-ignore
@@ -28,13 +31,25 @@ export type Action =
   | { type: 'UPDATE_VARIATIONS' }
   | { type: 'UPDATE_SKU'; id: string; sku: string }
   | { type: 'UPDATE_STOCK'; id: string; stock: number }
+  | { type: 'CHANGE_PRICE'; price: number }
+  | { type: 'CHANGE_DISCOUNTED_PRICE'; discountedPrice: number }
+  | { type: 'CHANGE_DISCOUNT_RATE'; discountRate: number }
 
 export interface InitArgs {
   product: Product
 }
 
 export const init = ({
-  product: { name, description, colors: initialColors, sizes: initialSizes },
+  product: {
+    name,
+    description,
+    colors: initialColors,
+    sizes: initialSizes,
+    price,
+    variations: initialVariations,
+    discountRate,
+    discountedPrice,
+  },
 }: InitArgs) => {
   const colors = initialColors.map(({ colorHex, name: colorName, images }, i) => ({
     id: `color-${i}`,
@@ -49,6 +64,8 @@ export const init = ({
     size,
   }))
 
+  // TODO: init variations.
+
   return {
     name,
     description,
@@ -58,6 +75,9 @@ export const init = ({
     nextSizeId: sizes.length,
     variations: [],
     variationsNeedUpdate: true,
+    price,
+    discountRate,
+    discountedPrice,
   }
 }
 
@@ -178,6 +198,20 @@ export const reducer: ReducerFunc = (state: State, action: Action) => {
               }
             : v
         })
+        return
+      }
+      case 'CHANGE_PRICE': {
+        draft.price = action.price
+        return
+      }
+      case 'CHANGE_DISCOUNTED_PRICE': {
+        draft.discountedPrice = action.discountedPrice
+        draft.discountRate = undefined
+        return
+      }
+      case 'CHANGE_DISCOUNT_RATE': {
+        draft.discountRate = action.discountRate
+        draft.discountedPrice = undefined
         return
       }
       default:

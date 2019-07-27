@@ -15,7 +15,7 @@
     "@fortawesome/free-solid-svg-icons": "5.9.0",
     "@fortawesome/react-fontawesome": "0.1.4",
     "emotion-theming": "10.0.14",
-    "graphql-react": "8.2.0",
+    "graphql-react": "8.3.0",
     "next": "9.0.1",
     "next-graphql-react": "3.2.0",
     "normalize.css": "8.0.1",
@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@types/graphql-react": "8.1.1",
-    "@types/node": "12.6.2",
+    "@types/node": "12.6.8",
     "@types/nprogress": "0.2.0",
     "@types/react": "16.8.23",
     "@types/react-dom": "16.8.4",

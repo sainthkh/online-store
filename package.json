@@ -2,7 +2,7 @@
   "name": "@beanovia/monorepo",
   "private": true,
   "devDependencies": {
-    "lerna": "3.15.0",
+    "lerna": "3.16.4",
     "prettier": "1.18.2",
     "tslint": "5.18.0",
     "tslint-config-prettier": "1.18.0",

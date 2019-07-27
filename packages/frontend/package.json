@@ -28,7 +28,7 @@
     "@types/node": "12.6.8",
     "@types/nprogress": "0.2.0",
     "@types/react": "16.8.23",
-    "@types/react-dom": "16.8.4",
+    "@types/react-dom": "16.8.5",
     "prettier": "1.18.2",
     "tslint": "5.18.0",
     "tslint-config-prettier": "1.18.0",

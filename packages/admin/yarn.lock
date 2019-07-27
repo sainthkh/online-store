@@ -1474,10 +1474,15 @@
   dependencies:
     "@types/jest-diff" "*"
 
-"@types/node@*", "@types/node@12.6.2":
+"@types/node@*":
   version "12.6.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.6.2.tgz#a5ccec6abb6060d5f20d256fb03ed743e9774999"
   integrity sha512-gojym4tX0FWeV2gsW4Xmzo5wxGjXGm550oVUII7f7G5o4BV6c7DBdiG1RRQd+y1bvqRyYtPfMK85UM95vsapqQ==
+
+"@types/node@12.6.8":
+  version "12.6.8"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.6.8.tgz#e469b4bf9d1c9832aee4907ba8a051494357c12c"
+  integrity sha512-aX+gFgA5GHcDi89KG5keey2zf0WfZk/HAQotEamsK2kbey+8yGKcson0hbK8E+v0NArlCJQCqMP161YhV6ZXLg==
 
 "@types/prop-types@*":
   version "15.7.1"
@@ -8406,10 +8411,10 @@ react-dnd-html5-backend@9.3.2:
   dependencies:
     dnd-core "^9.3.2"
 
-react-dnd-touch-backend@9.3.2:
-  version "9.3.2"
-  resolved "https://registry.yarnpkg.com/react-dnd-touch-backend/-/react-dnd-touch-backend-9.3.2.tgz#073dfd7c845d211ef4ab2e914b99e0d54676cda1"
-  integrity sha512-wXHFWMmr50yJh1xCSvz7MeZoyL7C7CI5kRDco1XZzZQY7Ml0oCzRaQ/VLXZavkRyVS+KzfvU6A7rWM3N8WAVwA==
+react-dnd-touch-backend@9.3.3:
+  version "9.3.3"
+  resolved "https://registry.yarnpkg.com/react-dnd-touch-backend/-/react-dnd-touch-backend-9.3.3.tgz#c7a07b27fd5352bd7b10e2986f1e36394864f3c9"
+  integrity sha512-CG3IsvcQFQgGam3gXAaDkxjjYsCwCXsQ5EqxRwu0O0mvtrRKmH5Dx657bFgndMGQo8D89Whf7xSf7pO5FzQ+8A==
   dependencies:
     "@types/invariant" "^2.2.30"
     dnd-core "^9.3.2"

@@ -739,7 +739,7 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
-"@babel/runtime@^7.4.2", "@babel/runtime@^7.4.3", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.4":
+"@babel/runtime@^7.4.2", "@babel/runtime@^7.4.3", "@babel/runtime@^7.5.4":
   version "7.5.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.5.4.tgz#cb7d1ad7c6d65676e66b47186577930465b5271b"
   integrity sha512-Na84uwyImZZc3FKf4aUF1tysApzwf3p2yuFBIyBfbzT5glzKTdvYI4KVW4kcgjrzoGUjC7w3YyCHcJKaRxsr2Q==
@@ -2636,6 +2636,11 @@ http-errors@~1.6.2:
     setprototypeof "1.1.0"
     statuses ">= 1.4.0 < 2"
 
+http-link-header@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/http-link-header/-/http-link-header-1.0.2.tgz#bea50f02e1c7996021f1013b428c63f77e0f4e11"
+  integrity sha512-z6YOZ8ZEnejkcCWlGZzYXNa6i+ZaTfiTg3WhlV/YvnNya3W/RbX1bMVUMTuCrg/DrtTCQxaFCkXCz4FtLpcebg==
+
 https-browserify@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
@@ -3286,12 +3291,13 @@ neo-async@^2.5.0:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
 
-next-graphql-react@3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/next-graphql-react/-/next-graphql-react-3.0.2.tgz#ca808cc1729122fb6e4c350002274efe9e18f7f8"
-  integrity sha512-oDfoXu/CGK9U3TaX817+nlMGBlECF7m5g2ABqJbA4An+kf+kQQSKPz0On3SRL6g3wBCN5KgH00eNP0rCJnrWSQ==
+next-graphql-react@3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/next-graphql-react/-/next-graphql-react-3.2.0.tgz#7c8fba0b2827431a7ac704062b9a780994ba20f8"
+  integrity sha512-de4nbFgQJSoOqO0BI894OdkpgLxTYJAvZzR1UpLG5DGVEmGIt1B5+zL76qOe2DBoxcByXE7+k8FG5TZnTv2qTA==
   dependencies:
-    "@babel/runtime" "^7.4.4"
+    "@babel/runtime" "^7.5.4"
+    http-link-header "^1.0.2"
     object-assign "^4.1.1"
 
 next-server@9.0.1:

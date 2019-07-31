@@ -27,7 +27,7 @@
     "@types/graphql-react": "8.1.1",
     "@types/node": "12.6.8",
     "@types/nprogress": "0.2.0",
-    "@types/react": "16.8.23",
+    "@types/react": "16.8.24",
     "@types/react-dom": "16.8.5",
     "prettier": "1.18.2",
     "tslint": "5.18.0",

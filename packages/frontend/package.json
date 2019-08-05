@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@types/graphql-react": "8.1.1",
-    "@types/node": "12.6.8",
+    "@types/node": "12.6.9",
     "@types/nprogress": "0.2.0",
     "@types/react": "16.8.24",
     "@types/react-dom": "16.8.5",

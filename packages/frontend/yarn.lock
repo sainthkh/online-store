@@ -746,6 +746,13 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime@^7.5.5":
+  version "7.5.5"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.5.5.tgz#74fba56d35efbeca444091c7850ccd494fd2f132"
+  integrity sha512-28QvEGyQyNkB0/m2B4FU7IEZGK2NUrcMtT6BZEFALTguLk+AUT6ofsHtPk5QyjAdUkpMJ+/Em+quwz4HOt30AQ==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
 "@babel/template@^7.1.0", "@babel/template@^7.4.4":
   version "7.4.4"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.4.4.tgz#f4b88d1225689a08f5bc3a17483545be9e4ed237"
@@ -3349,12 +3356,12 @@ neo-async@^2.5.0:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
 
-next-graphql-react@3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/next-graphql-react/-/next-graphql-react-3.2.0.tgz#7c8fba0b2827431a7ac704062b9a780994ba20f8"
-  integrity sha512-de4nbFgQJSoOqO0BI894OdkpgLxTYJAvZzR1UpLG5DGVEmGIt1B5+zL76qOe2DBoxcByXE7+k8FG5TZnTv2qTA==
+next-graphql-react@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/next-graphql-react/-/next-graphql-react-4.0.0.tgz#ea00e9d412cdd018b65b14af74e5f3f18f26dbbf"
+  integrity sha512-36X/XbMEH1144Lx76RcrwI5dzzEsWKX3aFyOKj2329sBqHLod67xeCvRFkYNqkve4TAE5xYKmlVRRlgp34Thbw==
   dependencies:
-    "@babel/runtime" "^7.5.4"
+    "@babel/runtime" "^7.5.5"
     http-link-header "^1.0.2"
     object-assign "^4.1.1"
 

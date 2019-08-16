@@ -21,4 +21,5 @@ build:
 deploy:
   kubectl:
     manifests:
-      - k8s/admin-deployment.yaml
+      - k8s/admin/deployment.yaml
+      - k8s/admin/cluster-ip-service.yaml

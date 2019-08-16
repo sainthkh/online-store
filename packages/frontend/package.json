@@ -20,8 +20,8 @@
     "next-graphql-react": "4.0.0",
     "normalize.css": "8.0.1",
     "nprogress": "0.2.0",
-    "react": "16.8.6",
-    "react-dom": "16.8.6"
+    "react": "16.9.0",
+    "react-dom": "16.9.0"
   },
   "devDependencies": {
     "@types/graphql-react": "8.1.1",

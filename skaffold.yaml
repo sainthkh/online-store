@@ -18,6 +18,20 @@ build:
             dest: .
           - src: '**/*.html'
             dest: .
+    - image: sainthkh/store-frontend
+      context: .
+      docker:
+        dockerfile: frontend.dev.Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .
+          - src: '**/*.ts'
+            dest: .
+          - src: '**/*.css'
+            dest: .
+          - src: '**/*.html'
+            dest: .
     - image: sainthkh/store-gateway
       context: .
       docker:
@@ -33,5 +47,8 @@ deploy:
     manifests:
       - k8s/admin/deployment.yaml
       - k8s/admin/cluster-ip-service.yaml
+      - k8s/frontend/deployment.yaml
+      - k8s/frontend/cluster-ip-service.yaml
       - k8s/gateway/deployment.yaml
       - k8s/gateway/cluster-ip-service.yaml
+      - k8s/ingress-service.yaml

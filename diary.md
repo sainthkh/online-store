@@ -280,6 +280,25 @@ First Goal: Big Example.
 * Considering how to make money from this project. 
 * Decided to share my experience on scotch.io, WebDesignerDepot, SmashingMagazine, sitepoint. 
 
-# Day 25. Sat, July 20
+# NOTE: July 20 - Aug 15
 
-* 
+* Watching [Docker and Kubernetes](https://www.udemy.com/docker-and-kubernetes-the-complete-guide/) for backend. 
+
+# Day 26. Fri, Aug 16
+
+* Added Dockerfile and Kubernetes setup for admin package.
+
+# Day 27. Sat, Aug 17
+
+* Set up Minikube and [wrote that process as an answer in StackOverflow](https://stackoverflow.com/a/57531515/1038927). 
+* Trying to set up Ingress. Things I learend:
+  - `minikube stop` before shutting down the PC. If not, minikube won't start next time. 
+  - We need to run `minikube start` every time. 
+  - `minikube delete` doesn't delete config.json file. So, `minikube start` doesn't work later. Manually delete it. 
+  - `minikube start` sometimes doesn't work. Then, uninstall minikube and remove `.minikube` folder. Then, re-install minikube and run `minikube start`
+  - when the final result is "Unable to connect to the server: dial tcp 192.168.168.125:8443: connectex: No connection could be made because the target machine actively refused it.\n, err: exit status 1: exit status 1". It is usually because apiServer went down for some reason. Then, reboot minikube with `minikube stop` and `minikube start`. 
+
+# Day 28. Mon, Aug 19
+
+* After many trials and errors of Minikube + Windows + Hyper V. I decided to use Minikube + Ubuntu + VirtualBox. I hope it works well. 
+ 

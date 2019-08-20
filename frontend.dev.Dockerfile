@@ -11,5 +11,8 @@ RUN lerna bootstrap
 COPY ./packages/theme ./packages/theme
 COPY ./packages/frontend ./packages/app
 
+WORKDIR /usr/src/packages/theme
+RUN npm run build
+
 WORKDIR /usr/src/packages/app
 CMD ["npm", "run", "dev"]

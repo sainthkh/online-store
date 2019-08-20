@@ -3,14 +3,16 @@ kind: Deployment
 metadata:
   name: store-admin-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      component: admin
+      app: admin
+      tier: frontend
   template:
     metadata:
       labels:
-        component: admin
+        app: admin
+        tier: frontend
     spec:
       containers:
         - name: admin-client

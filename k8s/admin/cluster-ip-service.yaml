@@ -3,9 +3,11 @@ kind: Service
 metadata:
   name: admin-cluster-ip-service
 spec:
-  type: ClusterIP
-  selector: 
-    component: admin
+  type: NodePort
+  selector:
+    app: admin
+    tier: frontend
   ports:
     - port: 8000
       targetPort: 8000
+      nodePort: 31000

@@ -9,7 +9,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "@emotion/core": "10.0.15",
+    "@emotion/core": "10.0.16",
     "@emotion/styled": "10.0.15",
     "@fortawesome/fontawesome-svg-core": "1.2.21",
     "@fortawesome/free-solid-svg-icons": "5.10.1",
@@ -20,14 +20,14 @@
     "next-graphql-react": "4.0.0",
     "normalize.css": "8.0.1",
     "nprogress": "0.2.0",
-    "react": "16.8.6",
-    "react-dom": "16.8.6"
+    "react": "16.9.0",
+    "react-dom": "16.9.0"
   },
   "devDependencies": {
     "@types/graphql-react": "8.1.1",
-    "@types/node": "12.6.9",
+    "@types/node": "12.7.2",
     "@types/nprogress": "0.2.0",
-    "@types/react": "16.8.24",
+    "@types/react": "16.9.2",
     "@types/react-dom": "16.8.5",
     "prettier": "1.18.2",
     "tslint": "5.18.0",

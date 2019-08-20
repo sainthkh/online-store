@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: store-admin-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: admin
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: admin
+        tier: frontend
+    spec:
+      containers:
+        - name: admin-client
+          image: sainthkh/store-admin
+          ports:
+            - containerPort: 8000

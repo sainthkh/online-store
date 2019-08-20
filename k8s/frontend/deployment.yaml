@@ -6,11 +6,13 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      component: frontend
+      app: frontend
+      tier: frontend
   template:
     metadata:
       labels:
-        component: frontend
+        app: frontend
+        tier: frontend
     spec:
       containers:
         - name: frontend

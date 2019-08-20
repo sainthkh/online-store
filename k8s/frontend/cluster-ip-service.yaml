@@ -5,7 +5,8 @@ metadata:
 spec:
   type: ClusterIP
   selector: 
-    component: frontend
+    app: frontend
+    tier: frontend
   ports:
     - port: 3000
       targetPort: 3000

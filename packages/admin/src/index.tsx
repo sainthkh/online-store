@@ -1,4 +1,4 @@
-import '@beanovia/theme/normalize.scss'
+import '@beanovia/theme/normalize.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'

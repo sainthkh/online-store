@@ -11,9 +11,9 @@
   "dependencies": {
     "@emotion/core": "10.0.16",
     "@emotion/styled": "10.0.15",
-    "@fortawesome/fontawesome-svg-core": "1.2.21",
-    "@fortawesome/free-solid-svg-icons": "5.10.1",
-    "@fortawesome/react-fontawesome": "0.1.4",
+    "@fortawesome/fontawesome-svg-core": "1.2.29",
+    "@fortawesome/free-solid-svg-icons": "5.13.1",
+    "@fortawesome/react-fontawesome": "0.1.11",
     "emotion-theming": "10.0.14",
     "graphql-react": "8.3.0",
     "next": "9.0.4",
